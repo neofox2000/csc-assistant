@@ -19,32 +19,80 @@ namespace CSC_Assistant
 
         struct GameLog
         {
-            public DateTime lastEntry;
-            public string path;
-            public string[] lines;
+            const int archiveSizeLimit = 16777216;
+            const int lineLimit = 9999;
+            DateTime lastEntry;
+            string path;
+            string tempPath;
+            string archivePath;
+            string[] lines;
 
-            public GameLog(string path)
+            public GameLog(string path, string tempPath, string archivePath)
             {
                 lastEntry = DateTime.MinValue;
                 this.path = path;
+                this.tempPath = tempPath;
+                this.archivePath = archivePath;
                 lines = null;
             }
             public bool Read()
             {
-                //Bail if no log file is present
-                if (!File.Exists(path)) return false;
+                bool skipLastEntryStamp = false;
 
-                //Check logfile for changes
-                var fileDT = File.GetLastWriteTime(path);
+                //Skip initial validation if a temp file is present (it got stuck or something)
+                if (!File.Exists(tempPath))
+                {
+                    //Bail if no log file is present
+                    if (!File.Exists(path)) return false;
 
-                //Bail if file hasn't been written since last read
-                if (fileDT < lastEntry) return false;
+                    //Check logfile for changes
+                    var fileDT = File.GetLastWriteTime(path);
+
+                    //Bail if file hasn't been written since last read
+                    if (fileDT < lastEntry) return false;
+                }
+                else
+                {
+                    skipLastEntryStamp = true;
+                }
 
                 //Attempt to read entire log file - bail on error
                 try
                 {
-                    lines = File.ReadAllLines(path);
-                    lastEntry = DateTime.Now;
+                    //Skip this step if a temp file is already present
+                    if(!File.Exists(tempPath))
+                        //Move log to allow more to be written - ...
+                        //...CSC has a log size limit at which point it...
+                        //...simply stops writing logs to the file
+                        File.Move(path, tempPath);
+
+                    var newLines = File.ReadAllLines(tempPath);
+                    int oldLinesLength = lines == null ? 0 : lines.Length;
+
+                    //Clear lines if over limit
+                    if (oldLinesLength >= lineLimit) lines = new string[0];
+
+                    Array.Resize(ref lines, oldLinesLength + newLines.Length + 1);
+
+                    //Timestamp new data
+                    lines[oldLinesLength] = DateTime.Now.ToString();
+
+                    //lines = File.ReadAllLines(tempPath);
+                    //Append new lines to the end of previous lines
+                    Array.Copy(newLines, 0, lines, oldLinesLength + 1, newLines.Length);
+
+                    if(!skipLastEntryStamp)
+                        lastEntry = DateTime.Now;
+
+                    //Delete archive file if over limit
+                    if (File.Exists(archivePath) && (new FileInfo(archivePath).Length > archiveSizeLimit))
+                        File.Delete(archivePath);
+
+                    //Append log to archive
+                    File.AppendAllLines(archivePath, lines);
+
+                    //Delete temp
+                    File.Delete(tempPath);
                 }
                 catch
                 {
@@ -130,9 +178,16 @@ namespace CSC_Assistant
             appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
                 .Replace("Roaming", "LocalLow");
             logPath = @$"{appDataPath}\LucidSight, Inc\CSC-Alpha\";
+            var appPath = Application.LocalUserAppDataPath;
 
-            combatLog = new GameLog($"{logPath}{combatLogFileName}");
-            miningLog = new GameLog($"{logPath}{miningLogFileName}");
+            combatLog = new GameLog(
+                $"{logPath}{combatLogFileName}", 
+                $"{appPath}\\{combatLogFileName}",
+                $"{appPath}\\combatArchive.log");
+            miningLog = new GameLog(
+                $"{logPath}{miningLogFileName}", 
+                $"{appPath}\\{miningLogFileName}",
+                $"{appPath}\\miningArchive.log");
 
             LogPollTimer.Interval = 1000;
             LogPollTimer.Enabled = true;
