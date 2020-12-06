@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace CSC_Assistant
+namespace CSC_Assistant.Client
 {
     public class BlobForDisplay
     {

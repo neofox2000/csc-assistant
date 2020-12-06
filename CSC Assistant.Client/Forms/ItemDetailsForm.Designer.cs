@@ -1,5 +1,5 @@
 ﻿
-namespace CSC_Assistant.Forms
+namespace CSC_Assistant.Client.Forms
 {
     partial class ItemDetailsForm
     {

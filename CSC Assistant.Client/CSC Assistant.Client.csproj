@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>CSC_Assistant</RootNamespace>
+    <RootNamespace>CSC_Assistant.Client</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
     <Authors>Paul Miller</Authors>
     <Description>A suite of tools for making life in CSC easier</Description>

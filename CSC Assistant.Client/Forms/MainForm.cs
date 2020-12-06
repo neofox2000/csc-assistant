@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using NioFox.Utils;
 
-namespace CSC_Assistant.Forms
+namespace CSC_Assistant.Client.Forms
 {
     public partial class MainForm : Form
     {

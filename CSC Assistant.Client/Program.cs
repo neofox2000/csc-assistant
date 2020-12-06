@@ -1,8 +1,8 @@
 using System;
 using System.Windows.Forms;
-using CSC_Assistant.Forms;
+using CSC_Assistant.Client.Forms;
 
-namespace CSC_Assistant
+namespace CSC_Assistant.Client
 {
     static class Program
     {
@@ -17,7 +17,7 @@ namespace CSC_Assistant
         {
             try
             {
-                appDataPath = 
+                appDataPath =
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
                         .Replace("Roaming", "LocalLow");
             }

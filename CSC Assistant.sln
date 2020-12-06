@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSC Assistant", "CSC Assistant.csproj", "{FB181A24-142A-42D9-B2ED-EBA347AB137B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVU.Demo", "MVU.Demo\MVU.Demo.csproj", "{CDEEF916-4762-4C92-B0DC-BED653BA8735}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSC Assistant.Client", "CSC Assistant.Client\CSC Assistant.Client.csproj", "{D91D1759-0F2E-49FB-A0B0-059408355072}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB181A24-142A-42D9-B2ED-EBA347AB137B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB181A24-142A-42D9-B2ED-EBA347AB137B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB181A24-142A-42D9-B2ED-EBA347AB137B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB181A24-142A-42D9-B2ED-EBA347AB137B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDEEF916-4762-4C92-B0DC-BED653BA8735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDEEF916-4762-4C92-B0DC-BED653BA8735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDEEF916-4762-4C92-B0DC-BED653BA8735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDEEF916-4762-4C92-B0DC-BED653BA8735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D91D1759-0F2E-49FB-A0B0-059408355072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D91D1759-0F2E-49FB-A0B0-059408355072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D91D1759-0F2E-49FB-A0B0-059408355072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D91D1759-0F2E-49FB-A0B0-059408355072}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
