@@ -29,43 +29,71 @@
         private void InitializeComponent()
         {
             this.MainMenu = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileSubMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.CloseMi = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolsSubMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.LogViewerMi = new System.Windows.Forms.ToolStripMenuItem();
+            this.EzAltStarterMi = new System.Windows.Forms.ToolStripMenuItem();
+            this.ItemBrowserMi = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMenu
             // 
             this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
+            this.FileSubMenu,
+            this.ToolsSubMenu});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
             this.MainMenu.Size = new System.Drawing.Size(880, 24);
             this.MainMenu.TabIndex = 2;
             this.MainMenu.Text = "menuStrip1";
-            this.MainMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MainMenu_ItemClicked);
             // 
-            // toolStripMenuItem1
+            // FileSubMenu
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileSubMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CloseMi});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-            this.toolStripMenuItem1.Text = "File";
+            this.FileSubMenu.Name = "FileSubMenu";
+            this.FileSubMenu.Size = new System.Drawing.Size(37, 20);
+            this.FileSubMenu.Text = "File";
             // 
             // CloseMi
             // 
             this.CloseMi.Name = "CloseMi";
             this.CloseMi.Size = new System.Drawing.Size(103, 22);
             this.CloseMi.Text = "Close";
+            this.CloseMi.Click += new System.EventHandler(this.CloseMi_Click);
             // 
-            // toolStripMenuItem2
+            // ToolsSubMenu
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(46, 20);
-            this.toolStripMenuItem2.Text = "Tools";
+            this.ToolsSubMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LogViewerMi,
+            this.EzAltStarterMi,
+            this.ItemBrowserMi});
+            this.ToolsSubMenu.Name = "ToolsSubMenu";
+            this.ToolsSubMenu.Size = new System.Drawing.Size(46, 20);
+            this.ToolsSubMenu.Text = "Tools";
+            // 
+            // LogViewerMi
+            // 
+            this.LogViewerMi.Name = "LogViewerMi";
+            this.LogViewerMi.Size = new System.Drawing.Size(143, 22);
+            this.LogViewerMi.Text = "Log Viewer";
+            this.LogViewerMi.Click += new System.EventHandler(this.LogViewerMi_Click);
+            // 
+            // EzAltStarterMi
+            // 
+            this.EzAltStarterMi.Name = "EzAltStarterMi";
+            this.EzAltStarterMi.Size = new System.Drawing.Size(143, 22);
+            this.EzAltStarterMi.Text = "Ez Alt Starter";
+            this.EzAltStarterMi.Click += new System.EventHandler(this.EzAltStarterMi_Click);
+            // 
+            // ItemBrowserMi
+            // 
+            this.ItemBrowserMi.Name = "ItemBrowserMi";
+            this.ItemBrowserMi.Size = new System.Drawing.Size(143, 22);
+            this.ItemBrowserMi.Text = "Item Browser";
+            this.ItemBrowserMi.Click += new System.EventHandler(this.ItemBrowserMi_Click);
             // 
             // MainForm
             // 
@@ -77,6 +105,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CSC Assistant";
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -87,8 +116,11 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip MainMenu;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem FileSubMenu;
         private System.Windows.Forms.ToolStripMenuItem CloseMi;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem ToolsSubMenu;
+        private System.Windows.Forms.ToolStripMenuItem LogViewerMi;
+        private System.Windows.Forms.ToolStripMenuItem EzAltStarterMi;
+        private System.Windows.Forms.ToolStripMenuItem ItemBrowserMi;
     }
 }

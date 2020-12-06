@@ -62,5 +62,10 @@ namespace CSC_Assistant.Forms
                  MiningLogTB,
                  MiningCollapsedCB.Checked);
         }
+
+        private void LogViewerForm_Shown(object sender, EventArgs e)
+        {
+            Dock = DockStyle.Bottom;
+        }
     }
 }

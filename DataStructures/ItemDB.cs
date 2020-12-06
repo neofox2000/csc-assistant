@@ -11,7 +11,7 @@ namespace CSC_Assistant
         const string ApiUrl = @"https://crosscuttingconcern.builtwithdark.com/items";
         const string DbFileName = "itemsDb.json";
 
-        const string tempDBPath = @"X:\downloads\items.json";
+        public const string tempDBPath = @"X:\downloads\items.json";
 
         public static List<Item> items;
         

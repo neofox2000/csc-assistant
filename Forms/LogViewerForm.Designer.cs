@@ -61,7 +61,7 @@ namespace CSC_Assistant.Forms
             this.LogTabControl.Location = new System.Drawing.Point(0, 0);
             this.LogTabControl.Name = "LogTabControl";
             this.LogTabControl.SelectedIndex = 0;
-            this.LogTabControl.Size = new System.Drawing.Size(840, 486);
+            this.LogTabControl.Size = new System.Drawing.Size(1132, 191);
             this.LogTabControl.TabIndex = 2;
             // 
             // CombatLogTab
@@ -71,7 +71,7 @@ namespace CSC_Assistant.Forms
             this.CombatLogTab.Location = new System.Drawing.Point(4, 24);
             this.CombatLogTab.Name = "CombatLogTab";
             this.CombatLogTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CombatLogTab.Size = new System.Drawing.Size(832, 458);
+            this.CombatLogTab.Size = new System.Drawing.Size(1124, 163);
             this.CombatLogTab.TabIndex = 0;
             this.CombatLogTab.Text = "Combat";
             this.CombatLogTab.UseVisualStyleBackColor = true;
@@ -83,15 +83,15 @@ namespace CSC_Assistant.Forms
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.CombatCollapsedCB);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(707, 3);
+            this.panel2.Location = new System.Drawing.Point(999, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(122, 452);
+            this.panel2.Size = new System.Drawing.Size(122, 157);
             this.panel2.TabIndex = 1;
             // 
             // ApplyCombatFiltersButton
             // 
             this.ApplyCombatFiltersButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ApplyCombatFiltersButton.Location = new System.Drawing.Point(0, 419);
+            this.ApplyCombatFiltersButton.Location = new System.Drawing.Point(0, 124);
             this.ApplyCombatFiltersButton.Name = "ApplyCombatFiltersButton";
             this.ApplyCombatFiltersButton.Size = new System.Drawing.Size(122, 33);
             this.ApplyCombatFiltersButton.TabIndex = 0;
@@ -107,7 +107,7 @@ namespace CSC_Assistant.Forms
             this.CombatOmissionList.Cursor = System.Windows.Forms.Cursors.Default;
             this.CombatOmissionList.Location = new System.Drawing.Point(0, 37);
             this.CombatOmissionList.Name = "CombatOmissionList";
-            this.CombatOmissionList.Size = new System.Drawing.Size(122, 376);
+            this.CombatOmissionList.Size = new System.Drawing.Size(122, 81);
             this.CombatOmissionList.TabIndex = 5;
             this.CombatOmissionList.Text = "Session\nValue";
             // 
@@ -141,7 +141,7 @@ namespace CSC_Assistant.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CombatLogTB.Location = new System.Drawing.Point(0, 3);
             this.CombatLogTB.Name = "CombatLogTB";
-            this.CombatLogTB.Size = new System.Drawing.Size(698, 447);
+            this.CombatLogTB.Size = new System.Drawing.Size(990, 152);
             this.CombatLogTB.TabIndex = 0;
             this.CombatLogTB.Text = "";
             this.CombatLogTB.WordWrap = false;
@@ -153,7 +153,7 @@ namespace CSC_Assistant.Forms
             this.MiningLogTab.Location = new System.Drawing.Point(4, 24);
             this.MiningLogTab.Name = "MiningLogTab";
             this.MiningLogTab.Padding = new System.Windows.Forms.Padding(3);
-            this.MiningLogTab.Size = new System.Drawing.Size(832, 458);
+            this.MiningLogTab.Size = new System.Drawing.Size(1124, 163);
             this.MiningLogTab.TabIndex = 1;
             this.MiningLogTab.Text = "Mining";
             this.MiningLogTab.UseVisualStyleBackColor = true;
@@ -165,15 +165,15 @@ namespace CSC_Assistant.Forms
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.MiningCollapsedCB);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(707, 3);
+            this.panel3.Location = new System.Drawing.Point(999, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(122, 452);
+            this.panel3.Size = new System.Drawing.Size(122, 157);
             this.panel3.TabIndex = 1;
             // 
             // ApplyMiningFiltersButton
             // 
             this.ApplyMiningFiltersButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ApplyMiningFiltersButton.Location = new System.Drawing.Point(0, 419);
+            this.ApplyMiningFiltersButton.Location = new System.Drawing.Point(0, 124);
             this.ApplyMiningFiltersButton.Name = "ApplyMiningFiltersButton";
             this.ApplyMiningFiltersButton.Size = new System.Drawing.Size(122, 33);
             this.ApplyMiningFiltersButton.TabIndex = 0;
@@ -188,7 +188,7 @@ namespace CSC_Assistant.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MiningOmissionList.Location = new System.Drawing.Point(0, 37);
             this.MiningOmissionList.Name = "MiningOmissionList";
-            this.MiningOmissionList.Size = new System.Drawing.Size(122, 376);
+            this.MiningOmissionList.Size = new System.Drawing.Size(122, 81);
             this.MiningOmissionList.TabIndex = 5;
             this.MiningOmissionList.Text = "Value";
             // 
@@ -233,12 +233,13 @@ namespace CSC_Assistant.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 486);
+            this.ClientSize = new System.Drawing.Size(1132, 191);
             this.Controls.Add(this.LogTabControl);
             this.Name = "LogViewerForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "LogViewerForm";
+            this.Shown += new System.EventHandler(this.LogViewerForm_Shown);
             this.LogTabControl.ResumeLayout(false);
             this.CombatLogTab.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
