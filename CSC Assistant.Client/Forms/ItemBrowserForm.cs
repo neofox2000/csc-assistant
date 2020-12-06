@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Linq;
 using System.Data;
 
-namespace CSC_Assistant.Forms
+namespace CSC_Assistant.Client.Forms
 {
     public partial class ItemBrowserForm : Form
     {

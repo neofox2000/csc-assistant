@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace CSC_Assistant.Forms
+namespace CSC_Assistant.Client.Forms
 {
     public partial class MainForm : Form
     {

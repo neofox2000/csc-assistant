@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace CSC_Assistant
+namespace CSC_Assistant.Client
 {
     public static class ItemDB
     {

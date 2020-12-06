@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace CSC_Assistant.Forms
+namespace CSC_Assistant.Client.Forms
 {
     public partial class EzAltStarterForm : Form
     {

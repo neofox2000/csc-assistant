@@ -2,7 +2,7 @@
 using System.Data;
 using System.Reflection;
 
-namespace CSC_Assistant
+namespace CSC_Assistant.Client
 {
     public static class ListtoDataTableConverter 
     {
