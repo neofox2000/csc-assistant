@@ -7,7 +7,7 @@ namespace CSC_Assistant
     static class Program
     {
         public static string appDataPath;
-
+        public static Action<Item> OnShowItemDetails;
 
         /// <summary>
         ///  The main entry point for the application.

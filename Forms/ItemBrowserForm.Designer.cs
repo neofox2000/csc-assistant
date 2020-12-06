@@ -56,6 +56,7 @@ namespace CSC_Assistant.Forms
             this.TestDBGridView.RowTemplate.Height = 25;
             this.TestDBGridView.Size = new System.Drawing.Size(976, 594);
             this.TestDBGridView.TabIndex = 9;
+            this.TestDBGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.TestDBGridView_CellMouseDoubleClick);
             // 
             // ItemBrowserForm
             // 

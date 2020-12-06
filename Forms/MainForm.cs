@@ -1,46 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using NioFox.Utils;
 
 namespace CSC_Assistant.Forms
 {
     public partial class MainForm : Form
     {
-        enum FormTypes { LogViewer, EzAltStarter, ItemBrowser }
-        class ChildForms
-        {
-            Form parent;
-            Dictionary<FormTypes, Form> children = new Dictionary<FormTypes, Form>();
-
-            public ChildForms(Form parent)
-            {
-                this.parent = parent;
-            }
-            public void Add<T>(FormTypes formType) where T : Form, new()
-            {
-                var newForm = new T();
-                newForm.MdiParent = parent;
-                children.Add(formType, newForm);
-            }
-            public void Show(FormTypes formType)
-            {
-                var form = children[formType];
-                if (form.Visible) form.BringToFront(); else form.Show();
-            }
-        }
-
-        ChildForms childForms;
-
+        MdiChildFormManager childFormManager;
 
         public MainForm()
         {
             InitializeComponent();
 
             //Initialize child forms
-            childForms = new ChildForms(this);
-            childForms.Add<LogViewerForm>(FormTypes.LogViewer);
-            childForms.Add<EzAltStarterForm>(FormTypes.EzAltStarter);
-            childForms.Add<ItemBrowserForm>(FormTypes.ItemBrowser);
+            childFormManager = new MdiChildFormManager(this);
+            childFormManager.Add<LogViewerForm>(FormTypes.LogViewer);
+            childFormManager.Add<EzAltStarterForm>(FormTypes.EzAltStarter);
+            childFormManager.Add<ItemBrowserForm>(FormTypes.ItemBrowser);
+            childFormManager.Add<ItemDetailsForm>(FormTypes.ItemDetails);
 
             WindowState = FormWindowState.Maximized;
         }
@@ -52,17 +29,17 @@ namespace CSC_Assistant.Forms
 
         private void ItemBrowserMi_Click(object sender, EventArgs e)
         {
-            childForms.Show(FormTypes.ItemBrowser);
+            childFormManager.Show(FormTypes.ItemBrowser);
         }
 
         private void EzAltStarterMi_Click(object sender, EventArgs e)
         {
-            childForms.Show(FormTypes.EzAltStarter);
+            childFormManager.Show(FormTypes.EzAltStarter);
         }
 
         private void LogViewerMi_Click(object sender, EventArgs e)
         {
-            childForms.Show(FormTypes.LogViewer);
+            childFormManager.Show(FormTypes.LogViewer);
         }
 
         private void MainForm_Shown(object sender, EventArgs e)

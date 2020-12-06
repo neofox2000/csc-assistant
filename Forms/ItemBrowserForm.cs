@@ -25,5 +25,11 @@ namespace CSC_Assistant.Forms
             TestDBGridView.DataSource = ListtoDataTableConverter.ToDataTable(
                 ItemDB.items.Select(x => x.Blob as BlobForDisplay).ToList());
         }
+
+        private void TestDBGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Program.OnShowItemDetails?.Invoke(
+                ItemDB.items[e.RowIndex]);
+        }
     }
 }
