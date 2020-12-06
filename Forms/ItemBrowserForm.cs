@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 using System.Linq;
+using System.Data;
 
 namespace CSC_Assistant.Forms
 {
@@ -12,23 +12,18 @@ namespace CSC_Assistant.Forms
             InitializeComponent();
         }
 
-        private void TestButton_Click(object sender, EventArgs e)
-        {
-            TestButton.Enabled = false;
-
-            if (ItemDB.Read())
-            {
-                var bindingList = new BindingList<Blob>(
-                    ItemDB.items.Select(x => x.Blob).ToList());
-                var bindingSource = new BindingSource(bindingList, null);
-                TestDBGridView.DataSource = bindingSource;
-            }
-            else MessageBox.Show($"Error loading test file: {ItemDB.tempDBPath}");
-        }
-
         private void ItemBrowserForm_Shown(object sender, EventArgs e)
         {
             Dock = DockStyle.Fill;
+
+            if (!ItemDB.Read())
+            {
+                MessageBox.Show($"Error loading test file: {ItemDB.tempDBPath}");
+                return;
+            }
+
+            TestDBGridView.DataSource = ListtoDataTableConverter.ToDataTable(
+                ItemDB.items.Select(x => x.Blob as BlobForDisplay).ToList());
         }
     }
 }

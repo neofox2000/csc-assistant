@@ -3,25 +3,13 @@ using System.Text.Json.Serialization;
 
 namespace CSC_Assistant
 {
-    public class Blob
+    public class BlobForDisplay
     {
-        [JsonPropertyName("_id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("catalogIndex")]
-        public bool CatalogIndex { get; set; }
-
         [JsonPropertyName("category")]
         public string Category { get; set; }
 
-        [JsonPropertyName("gameData")]
-        public GameData GameData { get; set; }
-
         [JsonPropertyName("itemID")]
         public string ItemID { get; set; }
-
-        [JsonPropertyName("marketData")]
-        public MarketData MarketData { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -41,14 +29,8 @@ namespace CSC_Assistant
         [JsonPropertyName("unitWeight")]
         public int UnitWeight { get; set; }
 
-        [JsonPropertyName("location")]
-        public string Location { get; set; }
-
         [JsonPropertyName("scanColor")]
         public string ScanColor { get; set; }
-
-        [JsonPropertyName("iconLocation")]
-        public string IconLocation { get; set; }
 
         [JsonPropertyName("#slotcount")]
         public string Slotcount { get; set; }
@@ -74,23 +56,14 @@ namespace CSC_Assistant
         [JsonPropertyName("size")]
         public string Size { get; set; }
 
-        [JsonPropertyName("slots")]
-        public List<string> Slots { get; set; }
-
         [JsonPropertyName("status")]
         public string Status { get; set; }
 
         [JsonPropertyName("techLevel")]
         public int? TechLevel { get; set; }
 
-        [JsonPropertyName("webData")]
-        public WebData WebData { get; set; }
-
         [JsonPropertyName("isHardPoint")]
         public bool? IsHardPoint { get; set; }
-
-        [JsonPropertyName("iconURL")]
-        public string IconURL { get; set; }
 
         [JsonPropertyName("jumpDrive")]
         public bool? JumpDrive { get; set; }
@@ -100,5 +73,35 @@ namespace CSC_Assistant
 
         [JsonPropertyName("uniqueFeature")]
         public string UniqueFeature { get; set; }
+    }
+    public class Blob : BlobForDisplay
+    {
+        [JsonPropertyName("_id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("catalogIndex")]
+        public bool CatalogIndex { get; set; }
+
+        [JsonPropertyName("gameData")]
+        public GameData GameData { get; set; }
+
+        [JsonPropertyName("marketData")]
+        public MarketData MarketData { get; set; }
+
+        [JsonPropertyName("location")]
+        public string Location { get; set; }
+
+        [JsonPropertyName("iconLocation")]
+        public string IconLocation { get; set; }
+
+        [JsonPropertyName("slots")]
+        public List<string> Slots { get; set; }
+
+        [JsonPropertyName("webData")]
+        public WebData WebData { get; set; }
+
+        [JsonPropertyName("iconURL")]
+        public string IconURL { get; set; }
+
     }
 }
