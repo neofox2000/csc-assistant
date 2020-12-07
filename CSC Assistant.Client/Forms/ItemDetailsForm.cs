@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CSC_Assistant.Client.DataStructures;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CSC_Assistant.Client
+namespace CSC_Assistant.Client.DataStructures
 {
     public class Item
     {

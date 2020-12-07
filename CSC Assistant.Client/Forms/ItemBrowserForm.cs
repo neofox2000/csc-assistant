@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Linq;
 using System.Data;
+using CSC_Assistant.Client.DataStructures;
 
 namespace CSC_Assistant.Client.Forms
 {

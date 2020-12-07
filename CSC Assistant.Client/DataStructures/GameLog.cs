@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-namespace CSC_Assistant.Client
+namespace CSC_Assistant.Client.DataStructures
 {
     struct GameLog
     {

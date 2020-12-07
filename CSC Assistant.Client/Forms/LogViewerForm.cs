@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSC_Assistant.Client.DataStructures;
+using System;
 using System.Windows.Forms;
 
 namespace CSC_Assistant.Client.Forms
