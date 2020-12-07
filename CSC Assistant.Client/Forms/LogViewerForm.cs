@@ -18,8 +18,8 @@ namespace CSC_Assistant.Client.Forms
             InitializeComponent();
 
             //Cache often reused paths (these should never change while the app is running)
-            logPath = @$"{Program.appDataPath}\LucidSight, Inc\CSC-Alpha\";
-            var appPath = Application.LocalUserAppDataPath;
+            logPath = @$"{Program.appDataPathLocalLow}\LucidSight, Inc\CSC-Alpha\";
+            var appPath = Program.outputPath;
 
             combatLog = new GameLog(
                 $"{logPath}{combatLogFileName}",

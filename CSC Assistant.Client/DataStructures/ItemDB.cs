@@ -11,35 +11,33 @@ namespace CSC_Assistant.Client.DataStructures
     public static class ItemDB
     {
         const string baseApiUri = @"https://crosscuttingconcern.builtwithdark.com/";
-        const string itemsUri = @"items/";
-        const string DbFileName = "itemsDb.json";
-
-        public const string tempDBPath = @"X:\downloads\items.json";
+        const string itemsUri = @"items";
+        const string DbFileName = "items.json";
 
         public static List<Item> items;
         
-        static HttpClient HClient = new HttpClient();
-        
+        static HttpClient client = new HttpClient();
+        static string fullDbPath { get { return @$"{Program.outputPath}\{DbFileName}"; } }
+
         public static int ItemCount { get { return items == null ? 0 : items.Count; } }
 
         static async Task<string> GetDataFromApi(string path)
         {
             string rawJson = string.Empty;
-            HttpResponseMessage response = await HClient.GetAsync(path);
+            var response = await client.GetAsync(path);
+            
             if (response.IsSuccessStatusCode)
-            {
                 rawJson = await response.Content.ReadAsStringAsync();
-            }
+
             return rawJson;
         }
 
-        static async Task RunAsync()
+        public static async Task UpdateLocalItemDatabase()
         {
             // Update port # in the following line.
-            HClient.BaseAddress = new Uri(baseApiUri);
-            HClient.DefaultRequestHeaders.Accept.Clear();
-            HClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+            client.BaseAddress = new Uri(baseApiUri);
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             try
             {
@@ -54,13 +52,19 @@ namespace CSC_Assistant.Client.DataStructures
             Console.ReadLine();
         }
 
-        public static bool Read()
+        public static DateTime GetDatabaseLastWriteDate()
         {
-            if(!File.Exists(tempDBPath)) return false;
+            try   { return File.GetLastWriteTime(fullDbPath); }
+            catch { return DateTime.MinValue; }
+        }
+
+        public static bool ReadLocalItemDatabase()
+        {            
+            if (!File.Exists(fullDbPath)) return false;
 
             items = new List<Item>();
 
-            var rawJson = File.ReadAllText(tempDBPath);
+            var rawJson = File.ReadAllText(fullDbPath);
 
             items.AddRange(JsonSerializer.Deserialize<Item[]>(rawJson));
 

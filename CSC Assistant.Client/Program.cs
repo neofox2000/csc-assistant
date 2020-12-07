@@ -7,8 +7,10 @@ namespace CSC_Assistant.Client
 {
     static class Program
     {
-        public static string appDataPath;
+        public static string appDataPathLocalLow;
+        public static string outputPath;
         public static Action<Item> OnShowItemDetails;
+        public static Action OnLocalItemDbUpdated;
 
         /// <summary>
         ///  The main entry point for the application.
@@ -18,9 +20,10 @@ namespace CSC_Assistant.Client
         {
             try
             {
-                appDataPath =
+                outputPath = Application.LocalUserAppDataPath;
+                appDataPathLocalLow = 
                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                        .Replace("Roaming", "LocalLow");
+                    .Replace("Roaming", "LocalLow");
             }
             catch { };
 

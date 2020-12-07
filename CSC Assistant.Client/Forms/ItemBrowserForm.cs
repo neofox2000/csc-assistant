@@ -11,13 +11,31 @@ namespace CSC_Assistant.Client.Forms
         public ItemBrowserForm()
         {
             InitializeComponent();
+
+            Program.OnLocalItemDbUpdated += RefreshItems;
         }
 
         private void ItemBrowserForm_Shown(object sender, EventArgs e)
         {
-            if (!ItemDB.Read())
+            RefreshItems();
+        }
+
+        private void RefreshItems()
+        {
+            TimeSpan timeSpan = DateTime.Now - ItemDB.GetDatabaseLastWriteDate();
+
+            //If the database hasn't been updated in a day, try to fetch a new file
+            if(timeSpan.Days > 1)
             {
-                MessageBox.Show($"Error loading test file: {ItemDB.tempDBPath}");
+                //TODO: Fix this!
+                //MessageBox.Show("Fetching Updated Items DB...");
+                //ItemDB.UpdateLocalItemDatabase().GetAwaiter().GetResult();
+                //MessageBox.Show("Finished!");
+            }
+
+            if (!ItemDB.ReadLocalItemDatabase())
+            {
+                //MessageBox.Show($"Error loading local item database");
                 return;
             }
 
