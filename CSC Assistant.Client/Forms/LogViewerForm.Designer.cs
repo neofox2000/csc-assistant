@@ -61,7 +61,7 @@ namespace CSC_Assistant.Client.Forms
             this.LogTabControl.Location = new System.Drawing.Point(0, 0);
             this.LogTabControl.Name = "LogTabControl";
             this.LogTabControl.SelectedIndex = 0;
-            this.LogTabControl.Size = new System.Drawing.Size(1132, 191);
+            this.LogTabControl.Size = new System.Drawing.Size(1132, 237);
             this.LogTabControl.TabIndex = 2;
             // 
             // CombatLogTab
@@ -71,7 +71,7 @@ namespace CSC_Assistant.Client.Forms
             this.CombatLogTab.Location = new System.Drawing.Point(4, 24);
             this.CombatLogTab.Name = "CombatLogTab";
             this.CombatLogTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CombatLogTab.Size = new System.Drawing.Size(1124, 163);
+            this.CombatLogTab.Size = new System.Drawing.Size(1124, 209);
             this.CombatLogTab.TabIndex = 0;
             this.CombatLogTab.Text = "Combat";
             this.CombatLogTab.UseVisualStyleBackColor = true;
@@ -85,13 +85,13 @@ namespace CSC_Assistant.Client.Forms
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(999, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(122, 157);
+            this.panel2.Size = new System.Drawing.Size(122, 203);
             this.panel2.TabIndex = 1;
             // 
             // ApplyCombatFiltersButton
             // 
             this.ApplyCombatFiltersButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ApplyCombatFiltersButton.Location = new System.Drawing.Point(0, 124);
+            this.ApplyCombatFiltersButton.Location = new System.Drawing.Point(0, 170);
             this.ApplyCombatFiltersButton.Name = "ApplyCombatFiltersButton";
             this.ApplyCombatFiltersButton.Size = new System.Drawing.Size(122, 33);
             this.ApplyCombatFiltersButton.TabIndex = 0;
@@ -107,7 +107,7 @@ namespace CSC_Assistant.Client.Forms
             this.CombatOmissionList.Cursor = System.Windows.Forms.Cursors.Default;
             this.CombatOmissionList.Location = new System.Drawing.Point(0, 37);
             this.CombatOmissionList.Name = "CombatOmissionList";
-            this.CombatOmissionList.Size = new System.Drawing.Size(122, 81);
+            this.CombatOmissionList.Size = new System.Drawing.Size(122, 127);
             this.CombatOmissionList.TabIndex = 5;
             this.CombatOmissionList.Text = "Session\nValue";
             // 
@@ -141,7 +141,7 @@ namespace CSC_Assistant.Client.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CombatLogTB.Location = new System.Drawing.Point(0, 3);
             this.CombatLogTB.Name = "CombatLogTB";
-            this.CombatLogTB.Size = new System.Drawing.Size(990, 152);
+            this.CombatLogTB.Size = new System.Drawing.Size(990, 198);
             this.CombatLogTB.TabIndex = 0;
             this.CombatLogTB.Text = "";
             this.CombatLogTB.WordWrap = false;
@@ -233,12 +233,12 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1132, 191);
+            this.ClientSize = new System.Drawing.Size(1132, 237);
             this.Controls.Add(this.LogTabControl);
             this.Name = "LogViewerForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "LogViewerForm";
+            this.Text = "Logs";
             this.Shown += new System.EventHandler(this.LogViewerForm_Shown);
             this.LogTabControl.ResumeLayout(false);
             this.CombatLogTab.ResumeLayout(false);

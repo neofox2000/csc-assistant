@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace CSC_Assistant.Client
 {
-    public class GameData
+    public class GameDataForDisplay
     {
         [JsonPropertyName("allowRNG")]
         public bool AllowRNG { get; set; }
@@ -13,9 +13,6 @@ namespace CSC_Assistant.Client
 
         [JsonPropertyName("refineTimePerUnit")]
         public int RefineTimePerUnit { get; set; }
-
-        [JsonPropertyName("refinedResources")]
-        public List<RefinedResource> RefinedResources { get; set; }
 
         [JsonPropertyName("qty")]
         public string Qty { get; set; }
@@ -196,9 +193,6 @@ namespace CSC_Assistant.Client
 
         [JsonPropertyName("craftingRecipe")]
         public string CraftingRecipe { get; set; }
-
-        [JsonPropertyName("craftingResources")]
-        public List<CraftingResource> CraftingResources { get; set; }
 
         [JsonPropertyName("craftingTime")]
         public int? CraftingTime { get; set; }
@@ -410,9 +404,6 @@ namespace CSC_Assistant.Client
         [JsonPropertyName("skinRestriction")]
         public string SkinRestriction { get; set; }
 
-        [JsonPropertyName("skinVisualID")]
-        public string SkinVisualID { get; set; }
-
         [JsonPropertyName("augmentInput")]
         public string AugmentInput { get; set; }
 
@@ -484,5 +475,17 @@ namespace CSC_Assistant.Client
 
         [JsonPropertyName("scanPingDuration")]
         public int? ScanPingDuration { get; set; }
+    }
+    public class GameData : GameDataForDisplay
+    {
+        [JsonPropertyName("refinedResources")]
+        public List<RefinedResource> RefinedResources { get; set; }
+
+        [JsonPropertyName("craftingResources")]
+        public List<CraftingResource> CraftingResources { get; set; }
+
+        [JsonPropertyName("skinVisualID")]
+        public string SkinVisualID { get; set; }
+
     }
 }

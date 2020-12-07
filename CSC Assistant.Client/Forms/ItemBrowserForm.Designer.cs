@@ -37,7 +37,7 @@ namespace CSC_Assistant.Client.Forms
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.treeView1.Location = new System.Drawing.Point(976, 0);
+            this.treeView1.Location = new System.Drawing.Point(983, 0);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(162, 594);
             this.treeView1.TabIndex = 7;
@@ -54,7 +54,7 @@ namespace CSC_Assistant.Client.Forms
             this.TestDBGridView.Name = "TestDBGridView";
             this.TestDBGridView.ReadOnly = true;
             this.TestDBGridView.RowTemplate.Height = 25;
-            this.TestDBGridView.Size = new System.Drawing.Size(976, 594);
+            this.TestDBGridView.Size = new System.Drawing.Size(983, 594);
             this.TestDBGridView.TabIndex = 9;
             this.TestDBGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.TestDBGridView_CellMouseDoubleClick);
             // 
@@ -62,13 +62,13 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1138, 594);
+            this.ClientSize = new System.Drawing.Size(1145, 594);
             this.Controls.Add(this.TestDBGridView);
             this.Controls.Add(this.treeView1);
             this.Name = "ItemBrowserForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "ItemBrowser";
+            this.Text = "Item Browser";
             this.Shown += new System.EventHandler(this.ItemBrowserForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.TestDBGridView)).EndInit();
             this.ResumeLayout(false);

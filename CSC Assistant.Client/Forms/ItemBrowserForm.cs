@@ -14,8 +14,6 @@ namespace CSC_Assistant.Client.Forms
 
         private void ItemBrowserForm_Shown(object sender, EventArgs e)
         {
-            Dock = DockStyle.Fill;
-
             if (!ItemDB.Read())
             {
                 MessageBox.Show($"Error loading test file: {ItemDB.tempDBPath}");
@@ -24,12 +22,17 @@ namespace CSC_Assistant.Client.Forms
 
             TestDBGridView.DataSource = ListtoDataTableConverter.ToDataTable(
                 ItemDB.items.Select(x => x.Blob as BlobForDisplay).ToList());
+
+            TestDBGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
         }
 
         private void TestDBGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Program.OnShowItemDetails?.Invoke(
-                ItemDB.items[e.RowIndex]);
+            //Don't consider header row
+            if (e.RowIndex < 0) return;
+
+            Program.OnShowItemDetails?.Invoke(ItemDB.LookupId(
+                TestDBGridView.Rows[e.RowIndex].Cells[0].Value.ToString()));
         }
     }
 }

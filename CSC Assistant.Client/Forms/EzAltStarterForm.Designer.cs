@@ -151,7 +151,7 @@ namespace CSC_Assistant.Client.Forms
             this.Name = "EzAltStarterForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "EzAltStarterForm";
+            this.Text = "EZ Alt Starter";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -5,29 +5,29 @@ namespace CSC_Assistant.Client
 {
     public class BlobForDisplay
     {
-        [JsonPropertyName("category")]
-        public string Category { get; set; }
-
         [JsonPropertyName("itemID")]
         public string ItemID { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("prod")]
-        public bool Prod { get; set; }
-
-        [JsonPropertyName("rarity")]
-        public string Rarity { get; set; }
-
-        [JsonPropertyName("subType")]
-        public string SubType { get; set; }
+        [JsonPropertyName("category")]
+        public string Category { get; set; }
 
         [JsonPropertyName("type")]
         public string Type { get; set; }
 
+        [JsonPropertyName("subType")]
+        public string SubType { get; set; }
+
+        [JsonPropertyName("rarity")]
+        public string Rarity { get; set; }
+
         [JsonPropertyName("unitWeight")]
         public int UnitWeight { get; set; }
+
+        [JsonPropertyName("techLevel")]
+        public int? TechLevel { get; set; }
 
         [JsonPropertyName("scanColor")]
         public string ScanColor { get; set; }
@@ -59,9 +59,6 @@ namespace CSC_Assistant.Client
         [JsonPropertyName("status")]
         public string Status { get; set; }
 
-        [JsonPropertyName("techLevel")]
-        public int? TechLevel { get; set; }
-
         [JsonPropertyName("isHardPoint")]
         public bool? IsHardPoint { get; set; }
 
@@ -70,6 +67,9 @@ namespace CSC_Assistant.Client
 
         [JsonPropertyName("preEquippedModulesList")]
         public string PreEquippedModulesList { get; set; }
+
+        [JsonPropertyName("prod")]
+        public bool Prod { get; set; }
 
         [JsonPropertyName("uniqueFeature")]
         public string UniqueFeature { get; set; }

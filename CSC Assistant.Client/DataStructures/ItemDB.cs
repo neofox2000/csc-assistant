@@ -31,5 +31,9 @@ namespace CSC_Assistant.Client
 
             return true;
         }
+        public static Item LookupId(string itemId)
+        {
+            return items.Find(x => x.Blob.ItemID == itemId);
+        }
     }
 }
