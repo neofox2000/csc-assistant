@@ -25,12 +25,12 @@ namespace CSC_Assistant.Client.Forms
             TimeSpan timeSpan = DateTime.Now - ItemDB.GetDatabaseLastWriteDate();
 
             //If the database hasn't been updated in a day, try to fetch a new file
-            if(timeSpan.Days > 1)
+            if (timeSpan.Days > 1)
             {
                 //TODO: Fix this!
-                //MessageBox.Show("Fetching Updated Items DB...");
-                //ItemDB.UpdateLocalItemDatabase().GetAwaiter().GetResult();
-                //MessageBox.Show("Finished!");
+                MessageBox.Show("Fetching Updated Items DB...");
+                ItemDB.UpdateLocalItemDatabase();
+                MessageBox.Show("Finished!");
             }
 
             if (!ItemDB.ReadLocalItemDatabase())
