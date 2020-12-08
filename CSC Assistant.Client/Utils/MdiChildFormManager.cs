@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace NioFox.Utils
 {
-    public enum FormTypes { LogViewer, EzAltStarter, ItemBrowser, ItemDetails }
+    public enum FormTypes { LogViewer, EzAltStarter, ItemBrowser, ItemDetails, ItemUsedIn }
 
     public class MdiChildFormManager
     {

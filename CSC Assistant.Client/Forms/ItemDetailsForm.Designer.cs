@@ -36,6 +36,8 @@ namespace CSC_Assistant.Client.Forms
             this.GDStatNames = new System.Windows.Forms.Label();
             this.ItemStatNamesLabel = new System.Windows.Forms.Label();
             this.ItemStatValuesLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RefineListLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,26 +48,29 @@ namespace CSC_Assistant.Client.Forms
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.PartsListLabel, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.MadeOfLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.RefineListLabel, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.GDStatValues, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.GDStatNames, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.ItemStatNamesLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ItemStatValuesLabel, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.MadeOfLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.PartsListLabel, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 69);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 89);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // PartsListLabel
             // 
             this.PartsListLabel.AutoSize = true;
-            this.PartsListLabel.Location = new System.Drawing.Point(159, 45);
+            this.PartsListLabel.Location = new System.Drawing.Point(159, 65);
             this.PartsListLabel.Name = "PartsListLabel";
             this.PartsListLabel.Padding = new System.Windows.Forms.Padding(2);
             this.PartsListLabel.Size = new System.Drawing.Size(58, 19);
@@ -75,7 +80,7 @@ namespace CSC_Assistant.Client.Forms
             // MadeOfLabel
             // 
             this.MadeOfLabel.AutoSize = true;
-            this.MadeOfLabel.Location = new System.Drawing.Point(8, 45);
+            this.MadeOfLabel.Location = new System.Drawing.Point(8, 65);
             this.MadeOfLabel.Name = "MadeOfLabel";
             this.MadeOfLabel.Padding = new System.Windows.Forms.Padding(2);
             this.MadeOfLabel.Size = new System.Drawing.Size(58, 19);
@@ -122,12 +127,32 @@ namespace CSC_Assistant.Client.Forms
             this.ItemStatValuesLabel.TabIndex = 4;
             this.ItemStatValuesLabel.Text = "Value";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 45);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(2);
+            this.label1.Size = new System.Drawing.Size(68, 19);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Refined to:";
+            // 
+            // RefineListLabel
+            // 
+            this.RefineListLabel.AutoSize = true;
+            this.RefineListLabel.Location = new System.Drawing.Point(159, 45);
+            this.RefineListLabel.Name = "RefineListLabel";
+            this.RefineListLabel.Padding = new System.Windows.Forms.Padding(2);
+            this.RefineListLabel.Size = new System.Drawing.Size(65, 19);
+            this.RefineListLabel.TabIndex = 13;
+            this.RefineListLabel.Text = "Refine List";
+            // 
             // ItemDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(334, 75);
+            this.ClientSize = new System.Drawing.Size(334, 89);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ItemDetailsForm";
@@ -152,5 +177,7 @@ namespace CSC_Assistant.Client.Forms
         private System.Windows.Forms.Label GDStatValues;
         private System.Windows.Forms.Label MadeOfLabel;
         private System.Windows.Forms.Label PartsListLabel;
+        private System.Windows.Forms.Label RefineListLabel;
+        private System.Windows.Forms.Label label1;
     }
 }

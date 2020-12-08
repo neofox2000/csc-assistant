@@ -2,15 +2,14 @@
 
 namespace CSC_Assistant.Client.DataStructures
 {
-    public class RefinedResource
+    public class RefinedResource : Resource
     {
         [JsonPropertyName("asset")]
         public string Asset { get; set; }
 
-        [JsonPropertyName("itemID")]
-        public string ItemID { get; set; }
-
         [JsonPropertyName("optimalQty")]
         public double OptimalQty { get; set; }
+
+        public override double Amount { get { return OptimalQty; } }
     }
 }

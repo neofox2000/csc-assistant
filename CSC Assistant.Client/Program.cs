@@ -10,6 +10,7 @@ namespace CSC_Assistant.Client
         public static string appDataPathLocalLow;
         public static string outputPath;
         public static Action<Item> OnShowItemDetails;
+        public static Action<Item> OnShowItemUsedIn;
         public static Action OnLocalItemDbUpdated;
 
         /// <summary>

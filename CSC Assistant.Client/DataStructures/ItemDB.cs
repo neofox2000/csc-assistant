@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace CSC_Assistant.Client.DataStructures
 {
@@ -74,6 +75,32 @@ namespace CSC_Assistant.Client.DataStructures
         public static Item LookupId(string itemId)
         {
             return items.Find(x => x.Blob.ItemID == itemId);
+        }
+
+        public static string GetResourcesDisplayList(Resource[] resources)
+        {
+            //Bail if nothing else to do
+            if (resources == null || resources.Length == 0) return "N/A";
+
+            StringBuilder resDisplay = new StringBuilder(resources.Length);
+
+            foreach (Resource res in resources)
+            {
+                //Fetch item
+                Item item = LookupId(res.ItemID);
+
+                //Handle bad id
+                if (item == null)
+                {
+                    resDisplay.Append("<bad id>\n");
+                    continue;
+                }
+
+                //Display relevant item details
+                resDisplay.Append($"{res.Amount}x {item.Name}\n");
+            }
+
+            return resDisplay.ToString();
         }
     }
 }

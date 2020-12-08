@@ -1,5 +1,4 @@
 ﻿using CSC_Assistant.Client.DataStructures;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
@@ -8,6 +7,7 @@ namespace CSC_Assistant.Client.Forms
 {
     public partial class ItemDetailsForm : Form
     {
+        const string NoneAvailable = "N/A";
 
         public ItemDetailsForm()
         {
@@ -31,8 +31,7 @@ namespace CSC_Assistant.Client.Forms
             Text = $"Item Details - {item.Name}";
 
             //Show all the main details for the item
-            string n, v;
-            DisplayAllProperties(item.Blob, typeof(BlobForDisplay), out n, out v);
+            DisplayAllProperties(item.Blob, typeof(BlobForDisplay), out string n, out string v);
             ItemStatNamesLabel.Text = n;
             ItemStatValuesLabel.Text = v;
 
@@ -41,42 +40,16 @@ namespace CSC_Assistant.Client.Forms
             GDStatNames.Text = n;
             GDStatValues.Text = v;
 
-            DisplayRefinedResources(item.Blob.GameData.RefinedResources);
+            RefineListLabel.Text = item.Blob.GameData.RefinedResources == null ? NoneAvailable :
+                ItemDB.GetResourcesDisplayList(item.Blob.GameData.RefinedResources.ToArray());
+
+            PartsListLabel.Text = item.Blob.GameData.CraftingResources == null ? NoneAvailable :
+                ItemDB.GetResourcesDisplayList(item.Blob.GameData.CraftingResources.ToArray());
         }
 
         private void ItemDetailsForm_Leave(object sender, System.EventArgs e)
         {
             Hide();
-        }
-
-        private void DisplayRefinedResources(List<RefinedResource> rRes)
-        {
-            //Bail if nothing else to do
-            if (rRes == null || rRes.Count == 0)
-            {
-                PartsListLabel.Text = "N/A";
-                return;
-            }
-
-            StringBuilder resDisplay = new StringBuilder(rRes.Count);
-
-            foreach (RefinedResource rr in rRes)
-            {
-                //Fetch item
-                Item item = ItemDB.LookupId(rr.ItemID);
-
-                //Handle bad id
-                if (item == null)
-                {
-                    resDisplay.Append("<bad id>\n");
-                    continue;
-                }
-
-                //Display relevant item details
-                resDisplay.Append($"{rr.OptimalQty}x {item.Name}\n");
-            }
-
-            PartsListLabel.Text = resDisplay.ToString();
         }
 
         private void DisplayAllProperties<T>(T target, System.Type targetType, out string propNames, out string propValues)

@@ -2,12 +2,11 @@
 
 namespace CSC_Assistant.Client.DataStructures
 {
-    public class CraftingResource
+    public class CraftingResource : Resource
     {
-        [JsonPropertyName("itemID")]
-        public string ItemID { get; set; }
-
         [JsonPropertyName("qty")]
         public int Qty { get; set; }
+
+        public override double Amount { get { return Qty; } }
     }
 }
