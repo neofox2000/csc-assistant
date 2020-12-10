@@ -18,34 +18,28 @@ namespace CSC_Assistant.Client.DataStructures
         const string DbFileName = "items.json";
 
         public static List<Item> items;
-        
+
         static HttpClient client = new HttpClient();
         static string fullDbPath { get { return @$"{Program.outputPath}\{DbFileName}"; } }
 
         public static int ItemCount { get { return items == null ? 0 : items.Count; } }
 
-        static async Task<string> GetDataFromApi(string path)
-        {
-            string rawJson = string.Empty;
-            var response = await client.GetAsync(path);
-            
-            if (response.IsSuccessStatusCode)
-                rawJson = await response.Content.ReadAsStringAsync();
 
-            return rawJson;
-        }
-
-        public static async Task UpdateLocalItemDatabase()
+        public static void UpdateLocalItemDatabase()
         {
             // Update port # in the following line.
             client.BaseAddress = new Uri(baseApiUri);
             //client.DefaultRequestHeaders.Accept.Clear();
             //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+            string rawJson = string.Empty;
             try
             {
-                // Get the product
-                var rawjson = await GetDataFromApi(itemsUri);
+                var response = client.GetAsync(itemsUri).Result;
+
+                if (response.IsSuccessStatusCode)
+                    rawJson =  response.Content.ReadAsStringAsync().Result;
+                items = new List<Item>(JsonSerializer.Deserialize<Item[]>(rawJson));
             }
             catch (Exception e)
             {
@@ -57,12 +51,12 @@ namespace CSC_Assistant.Client.DataStructures
 
         public static DateTime GetDatabaseLastWriteDate()
         {
-            try   { return File.GetLastWriteTime(fullDbPath); }
+            try { return File.GetLastWriteTime(fullDbPath); }
             catch { return DateTime.MinValue; }
         }
 
         public static bool ReadLocalItemDatabase()
-        {            
+        {
             if (!File.Exists(fullDbPath)) return false;
 
             items = new List<Item>();
