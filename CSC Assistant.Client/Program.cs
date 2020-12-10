@@ -1,7 +1,8 @@
 using System;
 using System.Windows.Forms;
 using CSC_Assistant.Client.Forms;
-using CSC_Assistant.Client.DataStructures;
+using CSC_Assistant.Client.Data;
+using CSC_Assistant.Common.DataStructures;
 
 namespace CSC_Assistant.Client
 {

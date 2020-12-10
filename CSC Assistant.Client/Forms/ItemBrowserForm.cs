@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using CSC_Assistant.Client.DataStructures;
+using CSC_Assistant.Algo;
+using CSC_Assistant.Client.Data;
 
 namespace CSC_Assistant.Client.Forms
 {
@@ -16,6 +17,20 @@ namespace CSC_Assistant.Client.Forms
         private void ItemBrowserForm_Shown(object sender, EventArgs e)
         {
             RefreshItems();
+
+            // ugly hacky demo:
+
+            // 1. generate map
+            var map = Algorithms.ItemMap(ItemDB.items);
+            // 2. get the first level parts of the item
+            var z = Algorithms.ItemParts(map, "NFT:10322");
+            // 3. You can go deeper until you get only ores
+            var xx = Algorithms.DeeperParts(map, z.Item2);
+            var xx2 = Algorithms.DeeperParts(map, xx);
+            var xx3 = Algorithms.DeeperParts(map, xx2);
+            // 4. And then it will keep returning the same
+            var xx4 = Algorithms.DeeperParts(map, xx3);
+            // Put breakpoints here and loot at values, feel free to delete later
         }
 
         private void RefreshItems()
@@ -26,8 +41,8 @@ namespace CSC_Assistant.Client.Forms
             if (timeSpan.Days > 1)
             {
                 var response = MessageBox.Show(
-                    "Do you want to download an updated item database? (You will need to do this at least once for this feature to work)", 
-                    "Download Item Database Update?", 
+                    "Do you want to download an updated item database? (You will need to do this at least once for this feature to work)",
+                    "Download Item Database Update?",
                     MessageBoxButtons.YesNo);
 
                 if (response == DialogResult.Yes)

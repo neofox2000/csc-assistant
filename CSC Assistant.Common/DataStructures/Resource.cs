@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CSC_Assistant.Client.DataStructures
+namespace CSC_Assistant.Common.DataStructures
 {
     public class Resource
     {

@@ -10,7 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="5.0.1-beta.20607.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSC Assistant.Algo\CSC Assistant.Algo.fsproj" />
     <ProjectReference Include="..\CSC Assistant.Calculations\CSC Assistant.Calculations.csproj" />
+    <ProjectReference Include="..\CSC Assistant.Common\CSC Assistant.Common.csproj" />
   </ItemGroup>
 
 </Project>

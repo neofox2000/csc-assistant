@@ -8,8 +8,10 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Data;
 using System.Linq;
+using CSC_Assistant.Common.DataStructures;
 
-namespace CSC_Assistant.Client.DataStructures
+
+namespace CSC_Assistant.Client.Data
 {
     public static class ItemDB
     {

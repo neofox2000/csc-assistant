@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CSC_Assistant.Client.DataStructures
+namespace CSC_Assistant.Common.DataStructures
 {
     public class Item
     {
@@ -16,12 +16,7 @@ namespace CSC_Assistant.Client.DataStructures
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        public override string ToString()
-        {
-            if (Blob.TechLevel != null)
-                return $"{Name} T{Blob.TechLevel}";
-            else
-                return Name;
-        }
+        public override string ToString() => // XD
+            $"{Name} {(Blob.TechLevel != null ? "T{Blob.TechLevel}" : "" )}";
     }
 }
