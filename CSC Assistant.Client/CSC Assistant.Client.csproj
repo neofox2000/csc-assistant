@@ -9,4 +9,8 @@
     <Description>A suite of tools for making life in CSC easier</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CSC Assistant.Calculations\CSC Assistant.Calculations.csproj" />
+  </ItemGroup>
+
 </Project>
