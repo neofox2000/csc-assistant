@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Data;
+using System.Linq;
 
 namespace CSC_Assistant.Client.DataStructures
 {
@@ -72,9 +74,13 @@ namespace CSC_Assistant.Client.DataStructures
             return true;
         }
 
-        public static Item LookupId(string itemId)
+        public static Item LookupItemID(string itemId)
         {
-            return items.Find(x => x.Blob.ItemID == itemId);
+            return items.Find(x => x.ItemId == itemId);
+        }
+        public static Item LookupKey(string key)
+        {
+            return items.Find(x => x.Key == key);
         }
 
         public static string GetResourcesDisplayList(Resource[] resources)
@@ -87,7 +93,7 @@ namespace CSC_Assistant.Client.DataStructures
             foreach (Resource res in resources)
             {
                 //Fetch item
-                Item item = LookupId(res.ItemID);
+                Item item = LookupItemID(res.ItemID);
 
                 //Handle bad id
                 if (item == null)
@@ -101,6 +107,11 @@ namespace CSC_Assistant.Client.DataStructures
             }
 
             return resDisplay.ToString();
+        }
+        public static DataTable GetDataTable()
+        {
+            return ListtoDataTableConverter.ToDataTable(
+                items.Select(x => x.Blob as BlobForDisplay).ToList());
         }
     }
 }

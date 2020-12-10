@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Linq;
-using System.Data;
 using CSC_Assistant.Client.DataStructures;
 
 namespace CSC_Assistant.Client.Forms
@@ -39,8 +37,10 @@ namespace CSC_Assistant.Client.Forms
                 return;
             }
 
-            TestDBGridView.DataSource = ListtoDataTableConverter.ToDataTable(
-                ItemDB.items.Select(x => x.Blob as BlobForDisplay).ToList());
+            TestDBGridView.DataSource = ItemDB.GetDataTable();
+
+            //Hide key column
+            TestDBGridView.Columns[0].Visible = false;
 
             TestDBGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
         }
@@ -50,8 +50,7 @@ namespace CSC_Assistant.Client.Forms
             //Don't consider header row
             if (e.RowIndex < 0) return;
 
-            Program.OnShowItemDetails?.Invoke(ItemDB.LookupId(
-                TestDBGridView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+            Program.OnShowItemUsedIn.Invoke(ItemDB.LookupKey(TestDBGridView.Rows[e.RowIndex].Cells[0].Value.ToString()));
         }
     }
 }

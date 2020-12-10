@@ -5,8 +5,14 @@ namespace CSC_Assistant.Client.DataStructures
 {
     public class BlobForDisplay
     {
+        [JsonPropertyName("_id")]
+        public string Key { get; set; }
+
+        /// <summary>
+        /// A shortened version of the normally used itemId (eg: V1002 instead of FT:V1002)
+        /// </summary>
         [JsonPropertyName("itemID")]
-        public string ItemID { get; set; }
+        public string ShortItemID { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -76,9 +82,6 @@ namespace CSC_Assistant.Client.DataStructures
     }
     public class Blob : BlobForDisplay
     {
-        [JsonPropertyName("_id")]
-        public string Id { get; set; }
-
         [JsonPropertyName("catalogIndex")]
         public bool CatalogIndex { get; set; }
 
@@ -103,5 +106,6 @@ namespace CSC_Assistant.Client.DataStructures
         [JsonPropertyName("iconURL")]
         public string IconURL { get; set; }
 
+        //public string CompleteItemId { get { return $"{MarketData.Asset.ToUpper()}:{MarketData.ItemID}"; } }
     }
 }

@@ -153,7 +153,7 @@ namespace CSC_Assistant.Client.Forms
             this.MiningLogTab.Location = new System.Drawing.Point(4, 24);
             this.MiningLogTab.Name = "MiningLogTab";
             this.MiningLogTab.Padding = new System.Windows.Forms.Padding(3);
-            this.MiningLogTab.Size = new System.Drawing.Size(1124, 163);
+            this.MiningLogTab.Size = new System.Drawing.Size(1124, 209);
             this.MiningLogTab.TabIndex = 1;
             this.MiningLogTab.Text = "Mining";
             this.MiningLogTab.UseVisualStyleBackColor = true;
@@ -167,13 +167,13 @@ namespace CSC_Assistant.Client.Forms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(999, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(122, 157);
+            this.panel3.Size = new System.Drawing.Size(122, 203);
             this.panel3.TabIndex = 1;
             // 
             // ApplyMiningFiltersButton
             // 
-            this.ApplyMiningFiltersButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ApplyMiningFiltersButton.Location = new System.Drawing.Point(0, 124);
+            this.ApplyMiningFiltersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ApplyMiningFiltersButton.Location = new System.Drawing.Point(0, 170);
             this.ApplyMiningFiltersButton.Name = "ApplyMiningFiltersButton";
             this.ApplyMiningFiltersButton.Size = new System.Drawing.Size(122, 33);
             this.ApplyMiningFiltersButton.TabIndex = 0;
@@ -183,12 +183,11 @@ namespace CSC_Assistant.Client.Forms
             // 
             // MiningOmissionList
             // 
-            this.MiningOmissionList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.MiningOmissionList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MiningOmissionList.Location = new System.Drawing.Point(0, 37);
             this.MiningOmissionList.Name = "MiningOmissionList";
-            this.MiningOmissionList.Size = new System.Drawing.Size(122, 81);
+            this.MiningOmissionList.Size = new System.Drawing.Size(122, 127);
             this.MiningOmissionList.TabIndex = 5;
             this.MiningOmissionList.Text = "Value";
             // 
@@ -220,7 +219,7 @@ namespace CSC_Assistant.Client.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MiningLogTB.Location = new System.Drawing.Point(1, 3);
             this.MiningLogTB.Name = "MiningLogTB";
-            this.MiningLogTB.Size = new System.Drawing.Size(700, 452);
+            this.MiningLogTB.Size = new System.Drawing.Size(992, 203);
             this.MiningLogTB.TabIndex = 0;
             this.MiningLogTB.Text = "";
             this.MiningLogTB.WordWrap = false;

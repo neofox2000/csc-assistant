@@ -18,6 +18,14 @@ namespace NioFox.Utils
         {
             var newForm = new T();
             newForm.MdiParent = parent;
+
+            //Hide form instead (closing causes form not to reopen)
+            newForm.FormClosing += (object sender, FormClosingEventArgs e) => 
+            {
+                e.Cancel = true;
+                newForm.Hide();
+            };
+
             children.Add(formType, newForm);
         }
         public void Show(FormTypes formType)
