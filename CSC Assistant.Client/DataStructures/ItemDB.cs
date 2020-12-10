@@ -24,37 +24,44 @@ namespace CSC_Assistant.Client.DataStructures
 
         public static int ItemCount { get { return items == null ? 0 : items.Count; } }
 
-
+        /// <summary>
+        /// Downloads full json database of CSC items from C3's endpoint
+        /// Saves this json database to local file
+        /// </summary>
         public static void UpdateLocalItemDatabase()
         {
-            // Update port # in the following line.
             client.BaseAddress = new Uri(baseApiUri);
-            //client.DefaultRequestHeaders.Accept.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            string rawJson = string.Empty;
             try
             {
                 var response = client.GetAsync(itemsUri).Result;
 
                 if (response.IsSuccessStatusCode)
-                    rawJson =  response.Content.ReadAsStringAsync().Result;
-                items = new List<Item>(JsonSerializer.Deserialize<Item[]>(rawJson));
+                {
+                    string rawJson = response.Content.ReadAsStringAsync().Result;
+                    File.WriteAllText(fullDbPath, rawJson);
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-
-            Console.ReadLine();
         }
 
+        /// <summary>
+        /// Reads the last write date/time of the local item database
+        /// </summary>
+        /// <returns>Last write date on file, or lowest date value if no file/error reading file</returns>
         public static DateTime GetDatabaseLastWriteDate()
         {
             try { return File.GetLastWriteTime(fullDbPath); }
             catch { return DateTime.MinValue; }
         }
 
+        /// <summary>
+        /// Reads the local copy of the CSC Item Database into memory
+        /// </summary>
+        /// <returns>True if worked, False for all other cases</returns>
         public static bool ReadLocalItemDatabase()
         {
             if (!File.Exists(fullDbPath)) return false;

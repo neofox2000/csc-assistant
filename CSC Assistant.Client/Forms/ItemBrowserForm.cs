@@ -22,18 +22,24 @@ namespace CSC_Assistant.Client.Forms
         {
             TimeSpan timeSpan = DateTime.Now - ItemDB.GetDatabaseLastWriteDate();
 
-            //If the database hasn't been updated in a day, try to fetch a new file
+            //If the database hasn't been updated in a day, try to fetch a new file (if user wants)
             if (timeSpan.Days > 1)
             {
-                //TODO: Fix this!
-                MessageBox.Show("Fetching Updated Items DB...");
-                ItemDB.UpdateLocalItemDatabase();
-                MessageBox.Show("Finished!");
+                var response = MessageBox.Show(
+                    "Do you want to download an updated item database? (You will need to do this at least once for this feature to work)", 
+                    "Download Item Database Update?", 
+                    MessageBoxButtons.YesNo);
+
+                if (response == DialogResult.Yes)
+                {
+                    ItemDB.UpdateLocalItemDatabase();
+                    MessageBox.Show("Finished!");
+                }
             }
 
             if (!ItemDB.ReadLocalItemDatabase())
             {
-                //MessageBox.Show($"Error loading local item database");
+                MessageBox.Show($"No database found, or error reading database file\nRestart this app to try again");
                 return;
             }
 
@@ -42,6 +48,7 @@ namespace CSC_Assistant.Client.Forms
             //Hide key column
             TestDBGridView.Columns[0].Visible = false;
 
+            //Tidy up a bit
             TestDBGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
         }
 

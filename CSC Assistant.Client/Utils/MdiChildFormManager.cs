@@ -33,5 +33,11 @@ namespace NioFox.Utils
             var form = children[formType];
             if (form.Visible) form.BringToFront(); else form.Show();
         }
+        public void HideAll()
+        {
+            var iterator = children.GetEnumerator();
+            while (iterator.MoveNext())
+                iterator.Current.Value.Hide();
+        }
     }
 }

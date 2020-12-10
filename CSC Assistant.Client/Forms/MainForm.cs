@@ -25,6 +25,7 @@ namespace CSC_Assistant.Client.Forms
 
         private void CloseMi_Click(object sender, EventArgs e)
         {
+            childFormManager.HideAll();
             Application.Exit();
         }
 
