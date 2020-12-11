@@ -7,6 +7,6 @@ namespace CSC_Assistant.Common.DataStructures
         [JsonPropertyName("qty")]
         public int Qty { get; set; }
 
-        public override double Amount { get { return Qty; } }
+        public override double Amount => Qty;
     }
 }

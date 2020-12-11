@@ -38,7 +38,7 @@ namespace CSC_Assistant.Client.Forms
         private void BuildTreeFromItem(Item item, TreeNode parentNode, int depth)
         {
             //Iterate through all items in the database
-            foreach (Item dbItem in ItemDB.items)
+            foreach (Item dbItem in ItemDB.Items)
             {
                 Resource[] resources = null;
 

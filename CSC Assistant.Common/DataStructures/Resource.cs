@@ -7,6 +7,6 @@ namespace CSC_Assistant.Common.DataStructures
         [JsonPropertyName("itemID")]
         public virtual string ItemID { get; set; }
 
-        public virtual double Amount { get { return 0; } }
+        public virtual double Amount => 0; 
     }
 }

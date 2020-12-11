@@ -19,12 +19,12 @@ namespace CSC_Assistant.Client.Data
         const string itemsUri = @"items";
         const string DbFileName = "items.json";
 
-        public static List<Item> items;
+        public static List<Item> Items { get; private set; }
 
-        static HttpClient client = new HttpClient();
-        static string fullDbPath { get { return @$"{Program.outputPath}\{DbFileName}"; } }
+        static readonly HttpClient client = new ();
+        static string FullDbPath => @$"{Program.outputPath}\{DbFileName}";
 
-        public static int ItemCount { get { return items == null ? 0 : items.Count; } }
+        public static int ItemCount => Items == null ? 0 : Items.Count;
 
         /// <summary>
         /// Downloads full json database of CSC items from C3's endpoint
@@ -41,7 +41,7 @@ namespace CSC_Assistant.Client.Data
                 if (response.IsSuccessStatusCode)
                 {
                     string rawJson = response.Content.ReadAsStringAsync().Result;
-                    File.WriteAllText(fullDbPath, rawJson);
+                    File.WriteAllText(FullDbPath, rawJson);
                 }
             }
             catch (Exception e)
@@ -56,7 +56,7 @@ namespace CSC_Assistant.Client.Data
         /// <returns>Last write date on file, or lowest date value if no file/error reading file</returns>
         public static DateTime GetDatabaseLastWriteDate()
         {
-            try { return File.GetLastWriteTime(fullDbPath); }
+            try { return File.GetLastWriteTime(FullDbPath); }
             catch { return DateTime.MinValue; }
         }
 
@@ -66,24 +66,24 @@ namespace CSC_Assistant.Client.Data
         /// <returns>True if worked, False for all other cases</returns>
         public static bool ReadLocalItemDatabase()
         {
-            if (!File.Exists(fullDbPath)) return false;
+            if (!File.Exists(FullDbPath)) return false;
 
-            items = new List<Item>();
+            Items = new List<Item>();
 
-            var rawJson = File.ReadAllText(fullDbPath);
+            var rawJson = File.ReadAllText(FullDbPath);
 
-            items.AddRange(JsonSerializer.Deserialize<Item[]>(rawJson));
+            Items.AddRange(JsonSerializer.Deserialize<Item[]>(rawJson));
 
             return true;
         }
 
         public static Item LookupItemID(string itemId)
         {
-            return items.Find(x => x.ItemId == itemId);
+            return Items.Find(x => x.ItemId == itemId);
         }
         public static Item LookupKey(string key)
         {
-            return items.Find(x => x.Key == key);
+            return Items.Find(x => x.Key == key);
         }
 
         public static string GetResourcesDisplayList(Resource[] resources)
@@ -91,7 +91,7 @@ namespace CSC_Assistant.Client.Data
             //Bail if nothing else to do
             if (resources == null || resources.Length == 0) return "N/A";
 
-            StringBuilder resDisplay = new StringBuilder(resources.Length);
+            StringBuilder resDisplay = new(resources.Length);
 
             foreach (Resource res in resources)
             {
@@ -114,7 +114,7 @@ namespace CSC_Assistant.Client.Data
         public static DataTable GetDataTable()
         {
             return ListtoDataTableConverter.ToDataTable(
-                items.Select(x => x.Blob as BlobForDisplay).ToList());
+                Items.Select(x => x.Blob as BlobForDisplay).ToList());
         }
     }
 }

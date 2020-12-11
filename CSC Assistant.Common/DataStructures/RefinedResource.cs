@@ -10,6 +10,6 @@ namespace CSC_Assistant.Common.DataStructures
         [JsonPropertyName("optimalQty")]
         public double OptimalQty { get; set; }
 
-        public override double Amount { get { return OptimalQty; } }
+        public override double Amount => OptimalQty;
     }
 }

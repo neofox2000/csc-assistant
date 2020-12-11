@@ -21,7 +21,7 @@ namespace CSC_Assistant.Client.Forms
             // ugly hacky demo:
 
             // 1. generate map
-            var map = Algorithms.ItemMap(ItemDB.items);
+            var map = Algorithms.ItemMap(ItemDB.Items);
             // 2. get the first level parts of the item
             var z = Algorithms.ItemParts(map, "NFT:10322");
             // 3. You can go deeper until you get only ores

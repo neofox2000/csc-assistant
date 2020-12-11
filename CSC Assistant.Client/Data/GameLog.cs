@@ -10,9 +10,9 @@ namespace CSC_Assistant.Client.Data
         const int archiveSizeLimit = 16777216;
         const int lineLimit = 9999;
         DateTime lastEntry;
-        string path;
-        string tempPath;
-        string archivePath;
+        readonly string path;
+        readonly string tempPath;
+        readonly string archivePath;
         string[] lines;
 
         public GameLog(string path, string tempPath, string archivePath)
@@ -58,7 +58,7 @@ namespace CSC_Assistant.Client.Data
                 int oldLinesLength = lines == null ? 0 : lines.Length;
 
                 //Clear lines if over limit
-                if (oldLinesLength >= lineLimit) lines = new string[0];
+                if (oldLinesLength >= lineLimit) lines = Array.Empty<string>();
 
                 Array.Resize(ref lines, oldLinesLength + newLines.Length + 1);
 
@@ -95,7 +95,7 @@ namespace CSC_Assistant.Client.Data
             if ((lines == null) || (lines.Length < 1)) return;
 
             //Collapsed/grouped log mode
-            List<string> modifiedLines = new List<string>();
+            List<string> modifiedLines = new();
             int dupeCount = 1;
             string lastLine = string.Empty;
 

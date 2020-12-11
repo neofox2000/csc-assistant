@@ -1,16 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>CSC_Assistant.Client</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
     <Authors>Paul Miller</Authors>
     <Description>A suite of tools for making life in CSC easier</Description>
+    <StartupObject>CSC_Assistant.Client.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FSharp.Core" Version="5.0.1-beta.20607.1" />
+    <PackageReference Include="FSharp.Core" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

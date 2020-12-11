@@ -2,15 +2,24 @@
 
 namespace CSC_Assistant.Calculations
 {
-    public struct WorkshopStats
+    public record WorkshopStats
     {
-        public double AugInput { get; set; }
-        public double AugTime{ get; set; }
-        public double AugYield { get; set; }
-        public double Efficiency { get; set; }
-        public int BaseTime { get; set; }
+        public double AugInput { get; }
+        public double AugTime { get; }
+        public double AugYield { get; }
+        public double Efficiency { get; }
+        public int BaseTime { get; }
 
-        public double AugmentedRatio(double ratio) => 
+        public WorkshopStats(double augInput, double augTime, double augYield, double efficiency, int baseTime)
+        {
+            AugInput = augInput;
+            AugTime = augTime;
+            AugYield = augYield;
+            Efficiency = efficiency;
+            BaseTime = baseTime;
+        }
+
+        public double AugmentedRatio(double ratio) =>
             AugInput / 100f * ratio / Efficiency;
 
         public double ProjectedYield(double input, double augRatio) =>
