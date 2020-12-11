@@ -1,19 +1,40 @@
-﻿namespace CSC_Assistant.Algo
-
+﻿// Define namespace for entire file
+namespace CSC_Assistant.Algo
+// using
 open CSC_Assistant.Common.DataStructures
 
+// a module is akin to a class
 module Algorithms =
-    
+    // Notes: 
+    // Everything is immutable
+    // Everything is an expression
+
+    // for now this is just an enum
     type ItemType = NFT | FT | Ore
-        
-    let ItemParts (itemMap:Map<string, Item>) (itemId:string)  = 
-        let data = itemMap.[itemId].Blob.GameData
+    
+    // a func called ItemParts that takes 2 args, the return value is automatically inferred
+    let ItemParts (itemMap:Map<string, Item>) (itemId:string) = 
+        // define immutable var
+        let data = itemMap.[itemId].Blob.GameData        
+        // a helper func that splits a Resource into a (id, amount) tuple
+        let splitLambda = fun (r:Resource) -> r.ItemID, double r.Amount
         if data.CraftingResources <> null && data.CraftingResources.Count <> 0 then
-            (NFT, data.CraftingResources |> Seq.map (fun r -> r.ItemID, double r.Amount)|> Map.ofSeq )
+            // |> is the pipe operator
+            // e.g. `Map.ofSeq` turns a seq into a map. can be used in two ways:
+            // 1. `let z = Map.ofSeq someSeq`
+            // 2. `let z = someSeq |> Map.ofSeq`
+            let craftMap = data.CraftingResources |> Seq.map splitLambda |> Map.ofSeq
+            // last line of an expression is an implicit return
+            (NFT, craftMap )        
         else if data.RefinedResources  <> null && data.RefinedResources.Count <> 0 then
-            (FT, data.RefinedResources |> Seq.map (fun r -> r.ItemID, double r.Amount) |> Map.ofSeq )
+            let refineMap = data.RefinedResources |> Seq.map splitLambda |> Map.ofSeq
+            // last line of an expression is an implicit return
+            (FT, refineMap)
         else
+            // last line of an expression is an implicit return
             (Ore, Map.empty)
+
+    
 
     let ItemMap (allItems:Item seq) = 
         allItems |> Seq.map (fun i -> i.ItemId, i) |> Map.ofSeq
@@ -36,17 +57,3 @@ module Algorithms =
             )
         |> mergeMapSeq
  
-
-    //let rec ItemRaws (itemId:string) (itemMap:Map<string, Item>) = 
-    //    let parts = DeeperParts itemId allItems
-    //    parts |> Map.toSeq |> Seq.map (fun kvp -> snd(kvp)) |> mergeMapList
-    //    |> Map.map (fun k -> fun v -> )
-         
-
-
-    //let FullTree (item:Item) (allItems:Item seq) = 
-    //    let blobMap = allItems |> Seq.map (fun i -> i.ItemId, i.Blob) |> Map.ofSeq
-    //    let (typ, parts) = ItemParts item
-    //    match typ with
-    //    | Ore -> []
-    //    | _ -> 
