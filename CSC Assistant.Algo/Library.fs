@@ -18,6 +18,7 @@ module Algorithms =
         let data = itemMap.[itemId].Blob.GameData        
         // a helper func that splits a Resource into a (id, amount) tuple
         let splitLambda = fun (r:Resource) -> r.ItemID, double r.Amount
+        // just a normal if-else, `<>` is `!=` in C#
         if data.CraftingResources <> null && data.CraftingResources.Count <> 0 then
             // |> is the pipe operator
             // e.g. `Map.ofSeq` turns a seq into a map. can be used in two ways:
@@ -32,9 +33,7 @@ module Algorithms =
             (FT, refineMap)
         else
             // last line of an expression is an implicit return
-            (Ore, Map.empty)
-
-    
+            (Ore, Map.empty)    
 
     let ItemMap (allItems:Item seq) = 
         allItems |> Seq.map (fun i -> i.ItemId, i) |> Map.ofSeq
