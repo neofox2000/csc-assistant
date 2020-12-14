@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using CSC_Assistant.Algo;
 using CSC_Assistant.Client.Data;
+using CSC_Assistant.Client.Utils;
 
 namespace CSC_Assistant.Client.Forms
 {
@@ -58,21 +59,38 @@ namespace CSC_Assistant.Client.Forms
                 return;
             }
 
-            TestDBGridView.DataSource = ItemDB.GetDataTable();
+            ItemsGridView.DataSource = ItemDB.GetDataTable();
 
             //Hide key column
-            TestDBGridView.Columns[0].Visible = false;
+            ItemsGridView.Columns[0].Visible = false;
 
             //Tidy up a bit
-            TestDBGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
+            ItemsGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
         }
 
         private void TestDBGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //Don't consider header row
-            if (e.RowIndex < 0) return;
+            Program.OnShowItemDetails.Invoke(GetRowItem(e.RowIndex));
+        }
 
-            Program.OnShowItemUsedIn.Invoke(ItemDB.LookupKey(TestDBGridView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+        private void ItemsGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            var item = GetRowItem(e.RowIndex);
+            ComponentUtility.SetTreeViewRootNode(
+                CraftsTreeView, 
+                ItemDB.GetItemResourceTree(item, ItemDB.ResourceType.Craft));
+            ComponentUtility.SetTreeViewRootNode(
+                RefinesTreeView,
+                ItemDB.GetItemResourceTree(item, ItemDB.ResourceType.Refine));
+        }
+
+        private Item GetRowItem(int rowIndex)
+        {
+            //Header row is invalid
+            if (rowIndex < 0) return null;
+
+            return ItemDB.LookupKey(
+                    ItemsGridView.Rows[rowIndex].Cells[0].Value.ToString());
         }
     }
 }

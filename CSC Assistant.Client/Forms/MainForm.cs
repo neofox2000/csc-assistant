@@ -18,7 +18,6 @@ namespace CSC_Assistant.Client.Forms
             childFormManager.Add<EzAltStarterForm>(FormTypes.EzAltStarter);
             childFormManager.Add<ItemBrowserForm>(FormTypes.ItemBrowser);
             childFormManager.Add<ItemDetailsForm>(FormTypes.ItemDetails);
-            childFormManager.Add<ItemUsedInRecipesForm>(FormTypes.ItemUsedIn);
 
             WindowState = FormWindowState.Maximized;
         }

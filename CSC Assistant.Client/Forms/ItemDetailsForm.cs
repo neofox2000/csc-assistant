@@ -19,11 +19,8 @@ namespace CSC_Assistant.Client.Forms
 
         private void OpenItemDetails(Item item)
         {
-            if (item == null)
-            {
-                MessageBox.Show("Bad Item");
-                return;
-            }
+            //Ignore bad items completely
+            if (item == null) { return; }
 
             Location = MousePosition;
 
