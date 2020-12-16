@@ -48,5 +48,14 @@ namespace CSC_Assistant.Client.Forms
             LogViewerMi_Click(sender, e);
             ItemBrowserMi_Click(sender, e);
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                CloseMi_Click(sender, null);
+            }
+        }
     }
 }

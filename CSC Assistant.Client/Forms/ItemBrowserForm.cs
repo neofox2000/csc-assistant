@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using CSC_Assistant.Algo;
 using CSC_Assistant.Client.Data;
 using CSC_Assistant.Client.Utils;
+using CSC_Assistant.Common.DataStructures;
 
 namespace CSC_Assistant.Client.Forms
 {

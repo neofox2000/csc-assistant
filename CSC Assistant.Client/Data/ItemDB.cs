@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.FSharp.Collections;
 using System.IO;
 using System.Text.Json;
 using System.Net.Http;
@@ -7,7 +8,8 @@ using System.Text;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-
+using CSC_Assistant.Common.DataStructures;
+using CSC_Assistant.Algo;
 
 namespace CSC_Assistant.Client.Data
 {
@@ -18,6 +20,7 @@ namespace CSC_Assistant.Client.Data
         const string DbFileName = "items.json";
 
         public static List<Item> Items { get; private set; }
+        public static FSharpMap<string, Item> ItemMap;
         public enum ResourceType { Craft, Refine };
 
         public static int ResourceTreeDepth { get; set; } = 3;
@@ -75,6 +78,9 @@ namespace CSC_Assistant.Client.Data
 
             Items.AddRange(JsonSerializer.Deserialize<Item[]>(rawJson));
 
+            //Create fast lookup map
+            ItemMap = Algorithms.ItemMap(Items);
+
             return true;
         }
 
@@ -124,18 +130,14 @@ namespace CSC_Assistant.Client.Data
             switch(resType)
             {
                 case ResourceType.Craft: 
-                    resources = 
-                        item.Blob.GameData.CraftingResources == null ? null :
-                        item.Blob.GameData.CraftingResources.ToArray();
+                    resources = item.Blob.GameData.CraftingResources?.ToArray();
                     break;
                 case ResourceType.Refine:
-                    resources =
-                        item.Blob.GameData.RefinedResources == null ? null :
-                        item.Blob.GameData.RefinedResources.ToArray();
+                    resources = item.Blob.GameData.RefinedResources?.ToArray();
                     break;
             }
 
-            TreeNode rootItem = new TreeNode(item.ToString());
+            TreeNode rootItem = new(item.ToString());
             BuildTreeFromItem(item, resources, rootItem, ResourceTreeDepth);
 
             return rootItem;
@@ -143,7 +145,7 @@ namespace CSC_Assistant.Client.Data
         private static void BuildTreeFromItem(Item item, Resource[] resources, TreeNode parentNode, int depth)
         {
             //Iterate through all items in the database
-            foreach (Item dbItem in items)
+            foreach (Item dbItem in Items)
             {
                 //Skip items with no crafting components
                 if (resources == null || resources.Length == 0) continue;
