@@ -8,7 +8,7 @@ namespace CSC_Assistant.Common.DataStructures
         public Blob Blob { get; set; }
 
         [JsonPropertyName("id")]
-        public string ItemId { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("key")]
         public string Key { get; set; }
@@ -17,6 +17,8 @@ namespace CSC_Assistant.Common.DataStructures
         public string Name { get; set; }
 
         public override string ToString() => // XD
-            $"{Name} {(Blob.TechLevel != null ? "T{Blob.TechLevel}" : "" )}";
+            $"{Name} {(Blob.TechLevel != null ? $"T{Blob.TechLevel}" : "" )}";
+
+        public string ItemIdFull() => $"{Id}";
     }
 }

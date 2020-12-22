@@ -13,13 +13,13 @@ module Algorithms =
     type ItemType = NFT | FT | Ore
     
     // a func called ItemParts that takes 2 args, the return value is automatically inferred
-    let ItemParts (itemMap:Map<string, Item>) (itemId:string) = 
+    let ItemParts (itemMap:Map<string, Item>) (itemId:string, itemType:ItemType) = 
         // define immutable var
         let data = itemMap.[itemId].Blob.GameData        
         // a helper func that splits a Resource into a (id, amount) tuple
-        let splitLambda = fun (r:Resource) -> r.ItemID, double r.Amount
+        let splitLambda = fun (r:Resource) -> "FT:" + r.ItemID, double r.Amount
         // just a normal if-else, `<>` is `!=` in C#
-        if data.CraftingResources <> null && data.CraftingResources.Count <> 0 then
+        if itemType = ItemType.NFT && data.CraftingResources <> null && data.CraftingResources.Count <> 0 then
             // |> is the pipe operator
             // e.g. `Map.ofSeq` turns a seq into a map. can be used in two ways:
             // 1. `let z = Map.ofSeq someSeq`
@@ -27,7 +27,7 @@ module Algorithms =
             let craftMap = data.CraftingResources |> Seq.map splitLambda |> Map.ofSeq
             // last line of an expression is an implicit return
             (NFT, craftMap )        
-        else if data.RefinedResources  <> null && data.RefinedResources.Count <> 0 then
+        else if itemType = ItemType.FT && data.RefinedResources  <> null && data.RefinedResources.Count <> 0 then
             let refineMap = data.RefinedResources |> Seq.map splitLambda |> Map.ofSeq
             // last line of an expression is an implicit return
             (FT, refineMap)
@@ -36,7 +36,7 @@ module Algorithms =
             (Ore, Map.empty)    
 
     let ItemMap (allItems:Item seq) = 
-        allItems |> Seq.map (fun i -> i.ItemId, i) |> Map.ofSeq
+        allItems |> Seq.map (fun i -> i.Id, i) |> Map.ofSeq
 
     let mergeMaps (map1:Map<string,double>) (map2:Map<string,double>) = 
         Seq.concat [Map.toSeq map1;Map.toSeq map2] 
@@ -44,15 +44,15 @@ module Algorithms =
         |> Seq.map (fun (k,v) -> k, v |> Seq.map snd |> Seq.sum)
         |> Map.ofSeq
 
+(*
     let mergeMapSeq = Seq.fold (fun s v -> mergeMaps s v) Map.empty
-
 
     let DeeperParts (itemMap:Map<string, Item>) (parts:Map<string,double>) =         
         parts |> Map.toSeq |> Seq.map (fun (k, v) -> 
-            let (typ, ps) = ItemParts itemMap ("FT:" + k)
+            let (typ, ps) = ItemParts itemMap ("FT:" + k, typ)
             match typ with 
                 | Ore -> [(k, v)] |> Map.ofList
                 | _ -> ps |> Map.map (fun _ vv -> vv * v)
             )
         |> mergeMapSeq
- 
+*)

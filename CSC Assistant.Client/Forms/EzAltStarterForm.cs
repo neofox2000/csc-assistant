@@ -49,8 +49,10 @@ namespace CSC_Assistant.Client.Forms
                 "Windows Registry Editor Version 5.00",
                 string.Empty,
                 "[HKEY_CURRENT_USER\\Software\\LucidSight, Inc\\CSC-Alpha]",
-                MakeRegistryHex(key, "user_h2087973204"),
-                MakeRegistryHex(key, "password_h1569157018")
+                MakeRegistryHex(key, "user_Protected_h1402120993"),
+                MakeRegistryDWord(key, "user_ProtectedHash_h3844546803"),
+                MakeRegistryHex(key, "password_Protected_h2139964655"),
+                MakeRegistryDWord(key, "password_ProtectedHash_h1565198909"),
             };
             File.WriteAllLines($"{OutputFolderTextBox.Text}\\creds.reg", outputLines);
 
@@ -93,6 +95,12 @@ namespace CSC_Assistant.Client.Forms
             var data = key.GetValue(rkName) as byte[];
             var strdata = BitConverter.ToString(data);
             return $"\"{rkName}\" = hex:{strdata.Replace("-", ",")}";
+        }
+        private string MakeRegistryDWord(RegistryKey key, string rkName)
+        {
+            int data = (int)key.GetValue(rkName);
+            var strdata = data.ToString("X8");
+            return $"\"{rkName}\" = dword:{strdata.Replace("-", "")}";
         }
     }
 }

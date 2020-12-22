@@ -19,20 +19,6 @@ namespace CSC_Assistant.Client.Forms
         private void ItemBrowserForm_Shown(object sender, EventArgs e)
         {
             RefreshItems();
-
-            // ugly hacky demo:
-
-            // 1. generate map
-            var map = Algorithms.ItemMap(ItemDB.Items);
-            // 2. get the first level parts of the item
-            var z = Algorithms.ItemParts(map, "NFT:10322");
-            // 3. You can go deeper until you get only ores
-            var xx = Algorithms.DeeperParts(map, z.Item2);
-            var xx2 = Algorithms.DeeperParts(map, xx);
-            var xx3 = Algorithms.DeeperParts(map, xx2);
-            // 4. And then it will keep returning the same
-            var xx4 = Algorithms.DeeperParts(map, xx3);
-            // Put breakpoints here and loot at values, feel free to delete later
         }
 
         private void RefreshItems()
@@ -79,10 +65,10 @@ namespace CSC_Assistant.Client.Forms
             var item = GetRowItem(e.RowIndex);
             ComponentUtility.SetTreeViewRootNode(
                 CraftsTreeView, 
-                ItemDB.GetItemResourceTree(item, ItemDB.ResourceType.Craft));
+                ItemDB.GetItemResourceTree(item, Algorithms.ItemType.FT));
             ComponentUtility.SetTreeViewRootNode(
                 RefinesTreeView,
-                ItemDB.GetItemResourceTree(item, ItemDB.ResourceType.Refine));
+                ItemDB.GetItemResourceTree(item, Algorithms.ItemType.NFT));
         }
 
         private Item GetRowItem(int rowIndex)

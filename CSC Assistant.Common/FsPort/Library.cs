@@ -34,7 +34,7 @@ namespace CSC_Assistant.Common.FsPort
         }
 
         public static Dictionary<string, Item> ItemMap(IEnumerable<Item> allItems) =>
-            new Dictionary<string, Item>(allItems.Select(i => KeyValuePair.Create(i.ItemId, i)));
+            new Dictionary<string, Item>(allItems.Select(i => KeyValuePair.Create(i.Id, i)));
 
         public static Dictionary<string, double> mergeMaps(Dictionary<string, double> dict1, Dictionary<string, double> dict2) =>
             new(dict1.Concat(dict2)

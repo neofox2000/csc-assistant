@@ -86,7 +86,9 @@ namespace CSC_Assistant.Client.Data
 
         public static Item LookupItemID(string itemId)
         {
-            return Items.Find(x => x.ItemId == itemId);
+            return ItemMap[itemId];
+            //try { return ItemMap[itemId]; }
+            //catch { return null; }
         }
         public static Item LookupKey(string key)
         {
@@ -124,45 +126,34 @@ namespace CSC_Assistant.Client.Data
                 Items.Select(x => x.Blob as BlobForDisplay).ToList());
         }
 
-        public static TreeNode GetItemResourceTree(Item item, ResourceType resType)
+        public static TreeNode GetItemResourceTree(Item item, Algorithms.ItemType resType)
         {
-            Resource[] resources = null;
-            switch(resType)
-            {
-                case ResourceType.Craft: 
-                    resources = item.Blob.GameData.CraftingResources?.ToArray();
-                    break;
-                case ResourceType.Refine:
-                    resources = item.Blob.GameData.RefinedResources?.ToArray();
-                    break;
-            }
-
             TreeNode rootItem = new(item.ToString());
-            BuildTreeFromItem(item, resources, rootItem, ResourceTreeDepth);
+            BuildTreeFromItem(item, resType, rootItem, ResourceTreeDepth);
 
             return rootItem;
         }
-        private static void BuildTreeFromItem(Item item, Resource[] resources, TreeNode parentNode, int depth)
+        private static void BuildTreeFromItem(Item item, Algorithms.ItemType resType, TreeNode parentNode, int depth)
         {
+            var resources = Algorithms.ItemParts(ItemMap, item.Id, resType).Item2;
+
+            //Bail if nothing to do
+            if (resources.IsEmpty) return;
+
             //Iterate through all items in the database
-            foreach (Item dbItem in Items)
+            foreach (var res in resources)
             {
-                //Skip items with no crafting components
-                if (resources == null || resources.Length == 0) continue;
+                var resItem = ItemMap[res.Key];
+                var newNode = parentNode.Nodes.Add($"{res.Value}x {resItem.Name}");
 
-                //Iterate through all crafting components
-                foreach (Resource res in resources)
-                {
-                    //Create nodes for matching components
-                    if ($"FT:{res.ItemID}" == item.ItemId)
-                    {
-                        var newNode = parentNode.Nodes.Add(dbItem.ToString());
-
-                        //Build sub-nodes if needed
-                        var newDepth = depth - 1;
-                        if (newDepth > 0) BuildTreeFromItem(dbItem, resources, newNode, newDepth);
-                    }
-                }
+                //Build sub-nodes if needed
+                var newDepth = depth - 1;
+                
+                if (newDepth > 0) BuildTreeFromItem(
+                    LookupItemID(res.Key), 
+                    resType, 
+                    newNode, 
+                    newDepth);
             }
         }
     }
