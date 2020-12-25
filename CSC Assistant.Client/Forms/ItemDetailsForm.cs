@@ -2,7 +2,9 @@
 using CSC_Assistant.Common.DataStructures;
 using System.Reflection;
 using System.Text;
+using System.Linq;
 using System.Windows.Forms;
+using CSC_Assistant.Algo;
 
 namespace CSC_Assistant.Client.Forms
 {
@@ -29,20 +31,20 @@ namespace CSC_Assistant.Client.Forms
             Text = $"Item Details - {item.Name}";
 
             //Show all the main details for the item
-            DisplayAllProperties(item.Blob, typeof(BlobForDisplay), out string n, out string v);
+            DisplayAllProperties(item.Blob, out string n, out string v);
             ItemStatNamesLabel.Text = n;
             ItemStatValuesLabel.Text = v;
 
             //Show additional stats from GameData
-            DisplayAllProperties(item.Blob.GameData, typeof(GameDataForDisplay), out n, out v);
+            DisplayAllProperties(item.Blob.GameData, out n, out v);
             GDStatNames.Text = n;
             GDStatValues.Text = v;
 
             RefineListLabel.Text = item.Blob.GameData.RefinedResources == null ? NoneAvailable :
-                ItemDB.GetResourcesDisplayList(item.Blob.GameData.RefinedResources.ToArray());
+                ItemDB.GetResourcesDisplayList(item);
 
             PartsListLabel.Text = item.Blob.GameData.CraftingResources == null ? NoneAvailable :
-                ItemDB.GetResourcesDisplayList(item.Blob.GameData.CraftingResources.ToArray());
+                ItemDB.GetResourcesDisplayList(item);
         }
 
         private void ItemDetailsForm_Leave(object sender, System.EventArgs e)
@@ -50,11 +52,12 @@ namespace CSC_Assistant.Client.Forms
             Hide();
         }
 
-        private void DisplayAllProperties<T>(T target, System.Type targetType, out string propNames, out string propValues)
+        private void DisplayAllProperties<T>(T target, out string propNames, out string propValues)
         {
             //Show all the main details for the item
-            PropertyInfo[] Props = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(x => !System.Attribute.IsDefined(x, typeof(OmitFromViewing))).ToArray();
+
             var propCount = Props.Length;
             StringBuilder sbNames = new StringBuilder(propCount);
             StringBuilder sbValues = new StringBuilder(propCount);

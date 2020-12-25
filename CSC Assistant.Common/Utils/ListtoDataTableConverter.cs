@@ -1,25 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace CSC_Assistant.Client
 {
     public static class ListtoDataTableConverter 
     {
-        public static DataTable ToDataTable<T>(List<T> items)
+        public static DataTable ToDataTable<T1>(List<T1> items, Type OmissionAttribute)
         {
-            DataTable dataTable = new(typeof(T).Name);
+            DataTable dataTable = new(typeof(T1).Name);
 
             //Get all the properties
-            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            //PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo[] Props = typeof(T1).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(x => !Attribute.IsDefined(x, OmissionAttribute)).ToArray();
 
             foreach (PropertyInfo prop in Props)
             {
                 //Setting column names as Property names
-                dataTable.Columns.Add(prop.Name);
+                var dc = dataTable.Columns.Add(prop.Name);
             }
 
-            foreach (T item in items)
+            foreach (T1 item in items)
             {
                 var values = new object[Props.Length];
 

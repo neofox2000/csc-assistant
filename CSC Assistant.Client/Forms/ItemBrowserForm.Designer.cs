@@ -30,12 +30,12 @@ namespace CSC_Assistant.Client.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.RefinesTreeView = new System.Windows.Forms.TreeView();
+            this.PartsTreeView = new System.Windows.Forms.TreeView();
             this.ItemsGridView = new System.Windows.Forms.DataGridView();
             this.TreeViewsPanel = new System.Windows.Forms.Panel();
-            this.CraftsGroupBox = new System.Windows.Forms.GroupBox();
-            this.CraftsTreeView = new System.Windows.Forms.TreeView();
-            this.RefinesGroupBox = new System.Windows.Forms.GroupBox();
+            this.MakesGroupBox = new System.Windows.Forms.GroupBox();
+            this.MakesTreeView = new System.Windows.Forms.TreeView();
+            this.PartsGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemCellMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DataGridPanel = new System.Windows.Forms.Panel();
             this.ItemGridPanel = new System.Windows.Forms.Panel();
@@ -44,21 +44,21 @@ namespace CSC_Assistant.Client.Forms
             this.ItemNameFilterTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             this.TreeViewsPanel.SuspendLayout();
-            this.CraftsGroupBox.SuspendLayout();
-            this.RefinesGroupBox.SuspendLayout();
+            this.MakesGroupBox.SuspendLayout();
+            this.PartsGroupBox.SuspendLayout();
             this.DataGridPanel.SuspendLayout();
             this.ItemGridPanel.SuspendLayout();
             this.ItemFilterPanel.SuspendLayout();
             this.ItemNameFilterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // RefinesTreeView
+            // PartsTreeView
             // 
-            this.RefinesTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RefinesTreeView.Location = new System.Drawing.Point(3, 19);
-            this.RefinesTreeView.Name = "RefinesTreeView";
-            this.RefinesTreeView.Size = new System.Drawing.Size(276, 209);
-            this.RefinesTreeView.TabIndex = 7;
+            this.PartsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PartsTreeView.Location = new System.Drawing.Point(3, 19);
+            this.PartsTreeView.Name = "PartsTreeView";
+            this.PartsTreeView.Size = new System.Drawing.Size(276, 209);
+            this.PartsTreeView.TabIndex = 7;
             // 
             // ItemsGridView
             // 
@@ -78,43 +78,43 @@ namespace CSC_Assistant.Client.Forms
             // 
             // TreeViewsPanel
             // 
-            this.TreeViewsPanel.Controls.Add(this.CraftsGroupBox);
-            this.TreeViewsPanel.Controls.Add(this.RefinesGroupBox);
+            this.TreeViewsPanel.Controls.Add(this.MakesGroupBox);
+            this.TreeViewsPanel.Controls.Add(this.PartsGroupBox);
             this.TreeViewsPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.TreeViewsPanel.Location = new System.Drawing.Point(863, 0);
             this.TreeViewsPanel.Name = "TreeViewsPanel";
             this.TreeViewsPanel.Size = new System.Drawing.Size(282, 513);
             this.TreeViewsPanel.TabIndex = 10;
             // 
-            // CraftsGroupBox
+            // MakesGroupBox
             // 
-            this.CraftsGroupBox.Controls.Add(this.CraftsTreeView);
-            this.CraftsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CraftsGroupBox.Location = new System.Drawing.Point(0, 231);
-            this.CraftsGroupBox.Name = "CraftsGroupBox";
-            this.CraftsGroupBox.Size = new System.Drawing.Size(282, 282);
-            this.CraftsGroupBox.TabIndex = 8;
-            this.CraftsGroupBox.TabStop = false;
-            this.CraftsGroupBox.Text = "Crafts";
+            this.MakesGroupBox.Controls.Add(this.MakesTreeView);
+            this.MakesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MakesGroupBox.Location = new System.Drawing.Point(0, 231);
+            this.MakesGroupBox.Name = "MakesGroupBox";
+            this.MakesGroupBox.Size = new System.Drawing.Size(282, 282);
+            this.MakesGroupBox.TabIndex = 8;
+            this.MakesGroupBox.TabStop = false;
+            this.MakesGroupBox.Text = "Makes";
             // 
-            // CraftsTreeView
+            // MakesTreeView
             // 
-            this.CraftsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CraftsTreeView.Location = new System.Drawing.Point(3, 19);
-            this.CraftsTreeView.Name = "CraftsTreeView";
-            this.CraftsTreeView.Size = new System.Drawing.Size(276, 260);
-            this.CraftsTreeView.TabIndex = 8;
+            this.MakesTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MakesTreeView.Location = new System.Drawing.Point(3, 19);
+            this.MakesTreeView.Name = "MakesTreeView";
+            this.MakesTreeView.Size = new System.Drawing.Size(276, 260);
+            this.MakesTreeView.TabIndex = 8;
             // 
-            // RefinesGroupBox
+            // PartsGroupBox
             // 
-            this.RefinesGroupBox.Controls.Add(this.RefinesTreeView);
-            this.RefinesGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RefinesGroupBox.Location = new System.Drawing.Point(0, 0);
-            this.RefinesGroupBox.Name = "RefinesGroupBox";
-            this.RefinesGroupBox.Size = new System.Drawing.Size(282, 231);
-            this.RefinesGroupBox.TabIndex = 2;
-            this.RefinesGroupBox.TabStop = false;
-            this.RefinesGroupBox.Text = "Refines";
+            this.PartsGroupBox.Controls.Add(this.PartsTreeView);
+            this.PartsGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PartsGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.PartsGroupBox.Name = "PartsGroupBox";
+            this.PartsGroupBox.Size = new System.Drawing.Size(282, 231);
+            this.PartsGroupBox.TabIndex = 2;
+            this.PartsGroupBox.TabStop = false;
+            this.PartsGroupBox.Text = "Parts";
             // 
             // ItemCellMenu
             // 
@@ -182,8 +182,8 @@ namespace CSC_Assistant.Client.Forms
             this.Shown += new System.EventHandler(this.ItemBrowserForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).EndInit();
             this.TreeViewsPanel.ResumeLayout(false);
-            this.CraftsGroupBox.ResumeLayout(false);
-            this.RefinesGroupBox.ResumeLayout(false);
+            this.MakesGroupBox.ResumeLayout(false);
+            this.PartsGroupBox.ResumeLayout(false);
             this.DataGridPanel.ResumeLayout(false);
             this.ItemGridPanel.ResumeLayout(false);
             this.ItemFilterPanel.ResumeLayout(false);
@@ -194,13 +194,13 @@ namespace CSC_Assistant.Client.Forms
         }
 
         #endregion
-        private System.Windows.Forms.TreeView RefinesTreeView;
+        private System.Windows.Forms.TreeView PartsTreeView;
         private System.Windows.Forms.DataGridView ItemsGridView;
         private System.Windows.Forms.Panel TreeViewsPanel;
         private System.Windows.Forms.ContextMenuStrip ItemCellMenu;
-        private System.Windows.Forms.GroupBox CraftsGroupBox;
-        private System.Windows.Forms.GroupBox RefinesGroupBox;
-        private System.Windows.Forms.TreeView CraftsTreeView;
+        private System.Windows.Forms.GroupBox MakesGroupBox;
+        private System.Windows.Forms.GroupBox PartsGroupBox;
+        private System.Windows.Forms.TreeView MakesTreeView;
         private System.Windows.Forms.Panel DataGridPanel;
         private System.Windows.Forms.Panel ItemFilterPanel;
         private System.Windows.Forms.GroupBox ItemNameFilterGroupBox;

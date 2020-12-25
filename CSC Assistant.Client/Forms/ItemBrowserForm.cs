@@ -63,12 +63,8 @@ namespace CSC_Assistant.Client.Forms
         private void ItemsGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             var item = GetRowItem(e.RowIndex);
-            ComponentUtility.SetTreeViewRootNode(
-                CraftsTreeView, 
-                ItemDB.GetItemResourceTree(item, Algorithms.ItemType.FT));
-            ComponentUtility.SetTreeViewRootNode(
-                RefinesTreeView,
-                ItemDB.GetItemResourceTree(item, Algorithms.ItemType.NFT));
+            ComponentUtility.SetTreeViewRootNode(PartsTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Parts));
+            ComponentUtility.SetTreeViewRootNode(MakesTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes));
         }
 
         private Item GetRowItem(int rowIndex)
