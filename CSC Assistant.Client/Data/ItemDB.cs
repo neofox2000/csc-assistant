@@ -22,7 +22,7 @@ namespace CSC_Assistant.Client.Data
         public enum ResourceTreeType { Parts, Makes }
 
         public static List<Item> Items { get; private set; }
-        public static FSharpMap<string, Item> ItemMap;
+        static FSharpMap<string, Item> ItemMap;
 
         public static int ResourceTreeDepth { get; set; } = 3;
 
@@ -168,7 +168,7 @@ namespace CSC_Assistant.Client.Data
             foreach (var res in resources)
             {
                 var resItem = ItemMap[res.Key];
-                var newNode = parentNode.Nodes.Add($"{res.Value}x {resItem.ToString()}");
+                var newNode = parentNode.Nodes.Add($"{res.Value}x {resItem}");
 
                 //Build sub-nodes if needed
                 var newDepth = depth - 1;
@@ -192,7 +192,7 @@ namespace CSC_Assistant.Client.Data
                 {
                     if(res.Key == item.Id)
                     {
-                        var newNode = parentNode.Nodes.Add($"{itemCandidate.Value.ToString()} [{res.Value}]");
+                        var newNode = parentNode.Nodes.Add($"{itemCandidate.Value} [{res.Value}]");
 
                         //Build sub-nodes if needed
                         if (depth > 0) BuildMakesTree(

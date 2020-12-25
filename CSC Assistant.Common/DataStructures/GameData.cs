@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace CSC_Assistant.Common.DataStructures
 {
-    public class GameDataForDisplay
+    public class GameData
     {
         [JsonPropertyName("allowRNG")]
         public bool AllowRNG { get; set; }
@@ -475,17 +475,17 @@ namespace CSC_Assistant.Common.DataStructures
 
         [JsonPropertyName("scanPingDuration")]
         public int? ScanPingDuration { get; set; }
-    }
-    public class GameData : GameDataForDisplay
-    {
+    
+        [OmitFromViewing]
         [JsonPropertyName("refinedResources")]
         public List<RefinedResource> RefinedResources { get; set; }
 
+        [OmitFromViewing]
         [JsonPropertyName("craftingResources")]
         public List<CraftingResource> CraftingResources { get; set; }
 
+        [OmitFromViewing]
         [JsonPropertyName("skinVisualID")]
         public string SkinVisualID { get; set; }
-
     }
 }
