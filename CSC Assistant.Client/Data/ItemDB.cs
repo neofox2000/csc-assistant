@@ -128,16 +128,19 @@ namespace CSC_Assistant.Client.Data
             DataTable dataTable = new("Items");
             var itemList = new List<Blob>();
 
-            if (itemFilter == null)
+            if ((itemFilter == null) || (itemFilter == string.Empty))
             {
                 itemList = Items
                     .Select(x => x.Blob).ToList();
             }
             else
             {
-                var myRegex = new System.Text.RegularExpressions.Regex($"*{itemFilter}*$");
+                var myRegex = new System.Text.RegularExpressions.Regex(
+                    $"^{itemFilter}",
+                    System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
                 itemList = Items
-                    .Where(x => myRegex.IsMatch(x.Name))
+                    .Where(x => x.Name != null && myRegex.IsMatch(x.Name))
                     .Select(x => x.Blob).ToList().ToList();
             }
 

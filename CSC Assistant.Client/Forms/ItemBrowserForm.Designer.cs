@@ -167,6 +167,7 @@ namespace CSC_Assistant.Client.Forms
             this.ItemNameFilterTextBox.Name = "ItemNameFilterTextBox";
             this.ItemNameFilterTextBox.Size = new System.Drawing.Size(194, 23);
             this.ItemNameFilterTextBox.TabIndex = 0;
+            this.ItemNameFilterTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ItemNameFilterTextBox_KeyUp);
             // 
             // ItemBrowserForm
             // 

@@ -46,7 +46,13 @@ namespace CSC_Assistant.Client.Forms
                 return;
             }
 
-            ItemsGridView.DataSource = ItemDB.GetDataTable();
+            UpdateGrid(null);
+        }
+
+        private void UpdateGrid(string itemFilter)
+        {
+
+            ItemsGridView.DataSource = ItemDB.GetDataTable(itemFilter);
 
             //Hide key column
             ItemsGridView.Columns[0].Visible = false;
@@ -74,6 +80,12 @@ namespace CSC_Assistant.Client.Forms
 
             return ItemDB.LookupKey(
                     ItemsGridView.Rows[rowIndex].Cells[0].Value.ToString());
+        }
+
+        private void ItemNameFilterTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+                UpdateGrid(ItemNameFilterTextBox.Text);
         }
     }
 }
