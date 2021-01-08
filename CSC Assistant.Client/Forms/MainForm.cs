@@ -18,7 +18,6 @@ namespace CSC_Assistant.Client.Forms
             childFormManager.Add<EzAltStarterForm>(FormTypes.EzAltStarter);
             childFormManager.Add<ItemBrowserForm>(FormTypes.ItemBrowser);
             childFormManager.Add<ItemDetailsForm>(FormTypes.ItemDetails);
-            childFormManager.Add<ItemUsedInRecipesForm>(FormTypes.ItemUsedIn);
 
             WindowState = FormWindowState.Maximized;
         }
@@ -48,6 +47,15 @@ namespace CSC_Assistant.Client.Forms
         {
             LogViewerMi_Click(sender, e);
             ItemBrowserMi_Click(sender, e);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                CloseMi_Click(sender, null);
+            }
         }
     }
 }

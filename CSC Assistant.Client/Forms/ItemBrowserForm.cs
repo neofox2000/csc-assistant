@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using CSC_Assistant.Algo;
 using CSC_Assistant.Client.Data;
+using CSC_Assistant.Client.Utils;
+using CSC_Assistant.Common.DataStructures;
 
 namespace CSC_Assistant.Client.Forms
 {
@@ -17,20 +19,6 @@ namespace CSC_Assistant.Client.Forms
         private void ItemBrowserForm_Shown(object sender, EventArgs e)
         {
             RefreshItems();
-
-            // ugly hacky demo:
-
-            // 1. generate map
-            var map = Algorithms.ItemMap(ItemDB.Items);
-            // 2. get the first level parts of the item
-            var z = Algorithms.ItemParts(map, "NFT:10322");
-            // 3. You can go deeper until you get only ores
-            var xx = Algorithms.DeeperParts(map, z.Item2);
-            var xx2 = Algorithms.DeeperParts(map, xx);
-            var xx3 = Algorithms.DeeperParts(map, xx2);
-            // 4. And then it will keep returning the same
-            var xx4 = Algorithms.DeeperParts(map, xx3);
-            // Put breakpoints here and loot at values, feel free to delete later
         }
 
         private void RefreshItems()
@@ -58,21 +46,46 @@ namespace CSC_Assistant.Client.Forms
                 return;
             }
 
-            TestDBGridView.DataSource = ItemDB.GetDataTable();
+            UpdateGrid(null);
+        }
+
+        private void UpdateGrid(string itemFilter)
+        {
+
+            ItemsGridView.DataSource = ItemDB.GetDataTable(itemFilter);
 
             //Hide key column
-            TestDBGridView.Columns[0].Visible = false;
+            ItemsGridView.Columns[0].Visible = false;
 
             //Tidy up a bit
-            TestDBGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
+            ItemsGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
         }
 
         private void TestDBGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //Don't consider header row
-            if (e.RowIndex < 0) return;
+            Program.OnShowItemDetails.Invoke(GetRowItem(e.RowIndex));
+        }
 
-            Program.OnShowItemUsedIn.Invoke(ItemDB.LookupKey(TestDBGridView.Rows[e.RowIndex].Cells[0].Value.ToString()));
+        private void ItemsGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            var item = GetRowItem(e.RowIndex);
+            ComponentUtility.SetTreeViewRootNode(PartsTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Parts));
+            ComponentUtility.SetTreeViewRootNode(MakesTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes));
+        }
+
+        private Item GetRowItem(int rowIndex)
+        {
+            //Header row is invalid
+            if (rowIndex < 0) return null;
+
+            return ItemDB.LookupKey(
+                    ItemsGridView.Rows[rowIndex].Cells[0].Value.ToString());
+        }
+
+        private void ItemNameFilterTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+                UpdateGrid(ItemNameFilterTextBox.Text);
         }
     }
 }

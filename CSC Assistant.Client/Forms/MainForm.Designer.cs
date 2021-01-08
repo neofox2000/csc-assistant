@@ -102,9 +102,11 @@
             this.ClientSize = new System.Drawing.Size(880, 450);
             this.Controls.Add(this.MainMenu);
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.MainMenu;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CSC Assistant";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();

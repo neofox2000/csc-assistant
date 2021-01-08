@@ -1,14 +1,16 @@
-﻿using CSC_Assistant.Client.Data;
-using CSC_Assistant.Common.DataStructures;
-using System.Reflection;
-using System.Text;
+﻿using CSC_Assistant.Common.DataStructures;
 using System.Windows.Forms;
+using CSC_Assistant.Client.Utils;
+using System.Text;
+using System.Collections.Generic;
 
 namespace CSC_Assistant.Client.Forms
 {
     public partial class ItemDetailsForm : Form
     {
-        const string NoneAvailable = "N/A";
+        //Re-used often
+        readonly StringBuilder sb1 = new();
+        readonly StringBuilder sb2 = new();
 
         public ItemDetailsForm()
         {
@@ -19,11 +21,8 @@ namespace CSC_Assistant.Client.Forms
 
         private void OpenItemDetails(Item item)
         {
-            if (item == null)
-            {
-                MessageBox.Show("Bad Item");
-                return;
-            }
+            //Ignore bad items completely
+            if (item == null) { return; }
 
             Location = MousePosition;
 
@@ -32,49 +31,36 @@ namespace CSC_Assistant.Client.Forms
             Text = $"Item Details - {item.Name}";
 
             //Show all the main details for the item
-            DisplayAllProperties(item.Blob, typeof(BlobForDisplay), out string n, out string v);
-            ItemStatNamesLabel.Text = n;
-            ItemStatValuesLabel.Text = v;
+            PropsToLabels(
+                ReflectionUtils.DisplayAllProperties(item.Blob, typeof(OmitFromViewing)),
+                ItemStatNamesLabel,
+                ItemStatValuesLabel);
 
             //Show additional stats from GameData
-            DisplayAllProperties(item.Blob.GameData, typeof(GameDataForDisplay), out n, out v);
-            GDStatNames.Text = n;
-            GDStatValues.Text = v;
-
-            RefineListLabel.Text = item.Blob.GameData.RefinedResources == null ? NoneAvailable :
-                ItemDB.GetResourcesDisplayList(item.Blob.GameData.RefinedResources.ToArray());
-
-            PartsListLabel.Text = item.Blob.GameData.CraftingResources == null ? NoneAvailable :
-                ItemDB.GetResourcesDisplayList(item.Blob.GameData.CraftingResources.ToArray());
+            PropsToLabels(
+                ReflectionUtils.DisplayAllProperties(item.Blob.GameData, typeof(OmitFromViewing)),
+                GDStatNames,
+                GDStatValues);
         }
 
         private void ItemDetailsForm_Leave(object sender, System.EventArgs e)
         {
             Hide();
         }
-
-        private void DisplayAllProperties<T>(T target, System.Type targetType, out string propNames, out string propValues)
+    
+        private void PropsToLabels(Dictionary<string, string> props, Label names, Label values)
         {
-            //Show all the main details for the item
-            PropertyInfo[] Props = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            
-            var propCount = Props.Length;
-            StringBuilder sbNames = new StringBuilder(propCount);
-            StringBuilder sbValues = new StringBuilder(propCount);
+            sb1.Clear();
+            sb2.Clear();
 
-            foreach (PropertyInfo prop in Props)
+            foreach(var prop in props)
             {
-                var val = prop.GetValue(target);
-
-                //Skip empty values (they probably don't apply to this item)
-                if ((val == null) || (val.ToString() == string.Empty)) continue;
-
-                sbNames.Append($"{prop.Name}:\n");
-                sbValues.Append($"{val}\n");
+                sb1.Append($"{prop.Key}\n");
+                sb2.Append($"{prop.Value}\n");
             }
 
-            propNames = sbNames.ToString();
-            propValues = sbValues.ToString();
+            names.Text = sb1.ToString();
+            values.Text = sb2.ToString();
         }
     }
 }
