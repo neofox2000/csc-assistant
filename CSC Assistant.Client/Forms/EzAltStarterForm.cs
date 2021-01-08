@@ -49,6 +49,8 @@ namespace CSC_Assistant.Client.Forms
                 "Windows Registry Editor Version 5.00",
                 string.Empty,
                 "[HKEY_CURRENT_USER\\Software\\LucidSight, Inc\\CSC-Alpha]",
+                "\"user_h2087973204\"=dword:00000000",
+                "\"password_h1569157018\"=dword:00000000",
                 MakeRegistryHex(key, "user_Protected_h1402120993"),
                 MakeRegistryDWord(key, "user_ProtectedHash_h3844546803"),
                 MakeRegistryHex(key, "password_Protected_h2139964655"),
