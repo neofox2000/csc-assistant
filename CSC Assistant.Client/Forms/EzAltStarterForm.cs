@@ -92,13 +92,13 @@ namespace CSC_Assistant.Client.Forms
             }
         }
 
-        private string MakeRegistryHex(RegistryKey key, string rkName)
+        static string MakeRegistryHex(RegistryKey key, string rkName)
         {
             var data = key.GetValue(rkName) as byte[];
             var strdata = BitConverter.ToString(data);
             return $"\"{rkName}\" = hex:{strdata.Replace("-", ",")}";
         }
-        private string MakeRegistryDWord(RegistryKey key, string rkName)
+        static string MakeRegistryDWord(RegistryKey key, string rkName)
         {
             int data = (int)key.GetValue(rkName);
             var strdata = data.ToString("X8");

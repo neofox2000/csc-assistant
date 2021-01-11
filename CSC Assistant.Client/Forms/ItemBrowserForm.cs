@@ -69,7 +69,7 @@ namespace CSC_Assistant.Client.Forms
         private void ItemsGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             var item = GetRowItem(e.RowIndex);
-            ComponentUtility.SetTreeViewRootNode(PartsTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Parts));
+            ComponentUtility.SetTreeViewRootNode(PartsTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Parts, (int)QuantityNUD.Value));
             ComponentUtility.SetTreeViewRootNode(MakesTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes));
         }
 

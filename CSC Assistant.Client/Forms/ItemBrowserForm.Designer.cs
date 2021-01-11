@@ -40,6 +40,8 @@ namespace CSC_Assistant.Client.Forms
             this.DataGridPanel = new System.Windows.Forms.Panel();
             this.ItemGridPanel = new System.Windows.Forms.Panel();
             this.ItemFilterPanel = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.QuantityNUD = new System.Windows.Forms.NumericUpDown();
             this.ItemNameFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemNameFilterTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
@@ -49,6 +51,8 @@ namespace CSC_Assistant.Client.Forms
             this.DataGridPanel.SuspendLayout();
             this.ItemGridPanel.SuspendLayout();
             this.ItemFilterPanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).BeginInit();
             this.ItemNameFilterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,12 +146,49 @@ namespace CSC_Assistant.Client.Forms
             // 
             // ItemFilterPanel
             // 
+            this.ItemFilterPanel.Controls.Add(this.groupBox1);
             this.ItemFilterPanel.Controls.Add(this.ItemNameFilterGroupBox);
             this.ItemFilterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ItemFilterPanel.Location = new System.Drawing.Point(0, 0);
             this.ItemFilterPanel.Name = "ItemFilterPanel";
             this.ItemFilterPanel.Size = new System.Drawing.Size(863, 49);
             this.ItemFilterPanel.TabIndex = 10;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.QuantityNUD);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox1.Location = new System.Drawing.Point(787, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(76, 49);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Quantity";
+            // 
+            // QuantityNUD
+            // 
+            this.QuantityNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.QuantityNUD.Location = new System.Drawing.Point(7, 19);
+            this.QuantityNUD.Maximum = new decimal(new int[] {
+            1316134911,
+            2328,
+            0,
+            0});
+            this.QuantityNUD.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.QuantityNUD.Name = "QuantityNUD";
+            this.QuantityNUD.Size = new System.Drawing.Size(62, 23);
+            this.QuantityNUD.TabIndex = 0;
+            this.QuantityNUD.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // ItemNameFilterGroupBox
             // 
@@ -188,6 +229,8 @@ namespace CSC_Assistant.Client.Forms
             this.DataGridPanel.ResumeLayout(false);
             this.ItemGridPanel.ResumeLayout(false);
             this.ItemFilterPanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).EndInit();
             this.ItemNameFilterGroupBox.ResumeLayout(false);
             this.ItemNameFilterGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -207,5 +250,7 @@ namespace CSC_Assistant.Client.Forms
         private System.Windows.Forms.GroupBox ItemNameFilterGroupBox;
         private System.Windows.Forms.TextBox ItemNameFilterTextBox;
         private System.Windows.Forms.Panel ItemGridPanel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown QuantityNUD;
     }
 }
