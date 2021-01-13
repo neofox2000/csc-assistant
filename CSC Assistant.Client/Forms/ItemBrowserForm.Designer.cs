@@ -33,6 +33,7 @@ namespace CSC_Assistant.Client.Forms
             this.PartsTreeView = new System.Windows.Forms.TreeView();
             this.ItemsGridView = new System.Windows.Forms.DataGridView();
             this.TreeViewsPanel = new System.Windows.Forms.Panel();
+            this.CraftTreeSplitter = new System.Windows.Forms.Splitter();
             this.MakesGroupBox = new System.Windows.Forms.GroupBox();
             this.MakesTreeView = new System.Windows.Forms.TreeView();
             this.PartsGroupBox = new System.Windows.Forms.GroupBox();
@@ -44,6 +45,7 @@ namespace CSC_Assistant.Client.Forms
             this.QuantityNUD = new System.Windows.Forms.NumericUpDown();
             this.ItemNameFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemNameFilterTextBox = new System.Windows.Forms.TextBox();
+            this.MainSplitter = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             this.TreeViewsPanel.SuspendLayout();
             this.MakesGroupBox.SuspendLayout();
@@ -82,6 +84,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             // TreeViewsPanel
             // 
+            this.TreeViewsPanel.Controls.Add(this.CraftTreeSplitter);
             this.TreeViewsPanel.Controls.Add(this.MakesGroupBox);
             this.TreeViewsPanel.Controls.Add(this.PartsGroupBox);
             this.TreeViewsPanel.Dock = System.Windows.Forms.DockStyle.Right;
@@ -89,6 +92,15 @@ namespace CSC_Assistant.Client.Forms
             this.TreeViewsPanel.Name = "TreeViewsPanel";
             this.TreeViewsPanel.Size = new System.Drawing.Size(282, 513);
             this.TreeViewsPanel.TabIndex = 10;
+            // 
+            // CraftTreeSplitter
+            // 
+            this.CraftTreeSplitter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CraftTreeSplitter.Location = new System.Drawing.Point(0, 231);
+            this.CraftTreeSplitter.Name = "CraftTreeSplitter";
+            this.CraftTreeSplitter.Size = new System.Drawing.Size(282, 5);
+            this.CraftTreeSplitter.TabIndex = 9;
+            this.CraftTreeSplitter.TabStop = false;
             // 
             // MakesGroupBox
             // 
@@ -210,11 +222,21 @@ namespace CSC_Assistant.Client.Forms
             this.ItemNameFilterTextBox.TabIndex = 0;
             this.ItemNameFilterTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ItemNameFilterTextBox_KeyUp);
             // 
+            // MainSplitter
+            // 
+            this.MainSplitter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MainSplitter.Location = new System.Drawing.Point(858, 0);
+            this.MainSplitter.Name = "MainSplitter";
+            this.MainSplitter.Size = new System.Drawing.Size(5, 513);
+            this.MainSplitter.TabIndex = 12;
+            this.MainSplitter.TabStop = false;
+            // 
             // ItemBrowserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1145, 513);
+            this.Controls.Add(this.MainSplitter);
             this.Controls.Add(this.DataGridPanel);
             this.Controls.Add(this.TreeViewsPanel);
             this.Name = "ItemBrowserForm";
@@ -252,5 +274,7 @@ namespace CSC_Assistant.Client.Forms
         private System.Windows.Forms.Panel ItemGridPanel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown QuantityNUD;
+        private System.Windows.Forms.Splitter MainSplitter;
+        private System.Windows.Forms.Splitter CraftTreeSplitter;
     }
 }
