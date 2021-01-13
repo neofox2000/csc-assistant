@@ -68,9 +68,7 @@ namespace CSC_Assistant.Client.Forms
 
         private void ItemsGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            var item = GetRowItem(e.RowIndex);
-            ComponentUtility.SetTreeViewRootNode(PartsTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Parts, (int)QuantityNUD.Value));
-            ComponentUtility.SetTreeViewRootNode(MakesTreeView, ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes));
+            UpdateCraftTrees(GetRowItem(e.RowIndex));
         }
 
         private Item GetRowItem(int rowIndex)
@@ -84,8 +82,28 @@ namespace CSC_Assistant.Client.Forms
 
         private void ItemNameFilterTextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
                 UpdateGrid(ItemNameFilterTextBox.Text);
+        }
+
+        private void QuantityNUD_KeyUp(object sender, KeyEventArgs e)
+        {
+            UpdateCraftTrees(
+                GetRowItem(ItemsGridView.SelectedCells[0].RowIndex));
+        }
+        
+        private void UpdateCraftTrees(Item item)
+        {
+            ItemDB.ResourceTreeDepth = (int)TreeDepthNUD.Value;
+            var qty = (double)QuantityNUD.Value;
+            var shopStats = new Workshop.Stats() { yield = 0.989, inputModifier = 0.7, outputModifier = 0.15 };
+
+            ComponentUtility.SetTreeViewRootNode(
+                PartsTreeView,
+                ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Parts, shopStats, qty));
+            ComponentUtility.SetTreeViewRootNode(
+                MakesTreeView,
+                ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes, shopStats, qty));
         }
     }
 }

@@ -46,6 +46,8 @@ namespace CSC_Assistant.Client.Forms
             this.ItemNameFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemNameFilterTextBox = new System.Windows.Forms.TextBox();
             this.MainSplitter = new System.Windows.Forms.Splitter();
+            this.TreeDepthGroupBox = new System.Windows.Forms.GroupBox();
+            this.TreeDepthNUD = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             this.TreeViewsPanel.SuspendLayout();
             this.MakesGroupBox.SuspendLayout();
@@ -56,6 +58,8 @@ namespace CSC_Assistant.Client.Forms
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).BeginInit();
             this.ItemNameFilterGroupBox.SuspendLayout();
+            this.TreeDepthGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TreeDepthNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // PartsTreeView
@@ -158,6 +162,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             // ItemFilterPanel
             // 
+            this.ItemFilterPanel.Controls.Add(this.TreeDepthGroupBox);
             this.ItemFilterPanel.Controls.Add(this.groupBox1);
             this.ItemFilterPanel.Controls.Add(this.ItemNameFilterGroupBox);
             this.ItemFilterPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -201,6 +206,7 @@ namespace CSC_Assistant.Client.Forms
             0,
             0,
             0});
+            this.QuantityNUD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.QuantityNUD_KeyUp);
             // 
             // ItemNameFilterGroupBox
             // 
@@ -231,6 +237,43 @@ namespace CSC_Assistant.Client.Forms
             this.MainSplitter.TabIndex = 12;
             this.MainSplitter.TabStop = false;
             // 
+            // TreeDepthGroupBox
+            // 
+            this.TreeDepthGroupBox.Controls.Add(this.TreeDepthNUD);
+            this.TreeDepthGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.TreeDepthGroupBox.Location = new System.Drawing.Point(730, 0);
+            this.TreeDepthGroupBox.Name = "TreeDepthGroupBox";
+            this.TreeDepthGroupBox.Size = new System.Drawing.Size(57, 49);
+            this.TreeDepthGroupBox.TabIndex = 2;
+            this.TreeDepthGroupBox.TabStop = false;
+            this.TreeDepthGroupBox.Text = "Depth";
+            // 
+            // TreeDepthNUD
+            // 
+            this.TreeDepthNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TreeDepthNUD.Location = new System.Drawing.Point(6, 19);
+            this.TreeDepthNUD.Maximum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.TreeDepthNUD.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TreeDepthNUD.Name = "TreeDepthNUD";
+            this.TreeDepthNUD.Size = new System.Drawing.Size(45, 23);
+            this.TreeDepthNUD.TabIndex = 0;
+            this.TreeDepthNUD.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.TreeDepthNUD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.QuantityNUD_KeyUp);
+            // 
             // ItemBrowserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -255,6 +298,8 @@ namespace CSC_Assistant.Client.Forms
             ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).EndInit();
             this.ItemNameFilterGroupBox.ResumeLayout(false);
             this.ItemNameFilterGroupBox.PerformLayout();
+            this.TreeDepthGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TreeDepthNUD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -276,5 +321,7 @@ namespace CSC_Assistant.Client.Forms
         private System.Windows.Forms.NumericUpDown QuantityNUD;
         private System.Windows.Forms.Splitter MainSplitter;
         private System.Windows.Forms.Splitter CraftTreeSplitter;
+        private System.Windows.Forms.GroupBox TreeDepthGroupBox;
+        private System.Windows.Forms.NumericUpDown TreeDepthNUD;
     }
 }

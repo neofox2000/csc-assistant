@@ -147,20 +147,20 @@ namespace CSC_Assistant.Client.Data
             return ListtoDataTableConverter.ToDataTable(itemList, typeof(OmitFromViewing));
         }
 
-        public static TreeNode GetItemResourceTree(Item item, ResourceTreeType treeType, int amount = 1)
+        public static TreeNode GetItemResourceTree(Item item, ResourceTreeType treeType, Workshop.Stats shopStats, double amount)
         {
             //Root just gets a name
             TreeNode rootItem = new(item.ToString());
 
             //Child nodes get name + quantity
             if (treeType == ResourceTreeType.Parts)
-                BuildPartsTree(item, rootItem, ResourceTreeDepth, amount);
+                BuildPartsTree(item, rootItem, ResourceTreeDepth, shopStats, amount);
             else
                 BuildMakesTree(item, rootItem, ResourceTreeDepth);
 
             return rootItem;
         }
-        private static void BuildPartsTree(Item item, TreeNode parentNode, int depth, int amount = 1)
+        private static void BuildPartsTree(Item item, TreeNode parentNode, int depth, Workshop.Stats shopStats, double amount)
         {
             var resources = Algorithms.ItemParts(ItemMap, item.Id).Item2;
 
@@ -180,7 +180,8 @@ namespace CSC_Assistant.Client.Data
                     LookupItemID(res.Key), 
                     newNode, 
                     newDepth,
-                    amount);
+                    shopStats,
+                    res.Value * amount);
             }
         }
         private static void BuildMakesTree(Item item, TreeNode parentNode, int depth)
