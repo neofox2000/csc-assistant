@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
-using CSC_Assistant.Algo;
 using CSC_Assistant.Client.Data;
 using CSC_Assistant.Client.Utils;
 using CSC_Assistant.Common.DataStructures;
@@ -92,11 +93,29 @@ namespace CSC_Assistant.Client.Forms
                 GetRowItem(ItemsGridView.SelectedCells[0].RowIndex));
         }
         
-        private void UpdateCraftTrees(Item item)
+        private void UpdateCraftTrees(Item item = null)
         {
+            //Try to get the item from available grid selection
+            if(item == null)
+                item = GetRowItem(ItemsGridView.SelectedCells[0].RowIndex);
+
+            //If no items possible, clear trees
+            if (item == null)
+            {
+                PartsTreeView.Nodes.Clear();
+                MakesTreeView.Nodes.Clear();
+                return;
+            }
+
             ItemDB.ResourceTreeDepth = (int)TreeDepthNUD.Value;
             var qty = (double)QuantityNUD.Value;
-            var shopStats = new Workshop.Stats() { yield = 0.989, inputModifier = 0.7, outputModifier = 0.15 };
+            var shopStats = new Workshop.Stats()
+            {
+                useStats = UseShopStatsCheckBox.Checked,
+                yield = (float)(BaseYeildNUD.Value), 
+                inputModifier = (float)(InputModifierNUD.Value), 
+                outputModifier = (float)(YieldModifierNUD.Value)
+            };
 
             ComponentUtility.SetTreeViewRootNode(
                 PartsTreeView,
@@ -104,6 +123,31 @@ namespace CSC_Assistant.Client.Forms
             ComponentUtility.SetTreeViewRootNode(
                 MakesTreeView,
                 ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes, shopStats, qty));
+        }
+
+        private void Bleh(TreeNode node, List<string> output)
+        {
+            output.Add(node.Text);
+            if (node.Nodes.Count > 0)
+                for (int i = 0; i < node.Nodes.Count; i++)
+                    Bleh(node.Nodes[i], output);
+        }
+
+        private void PartsTreeView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //Copy csv data to clipboard
+            List<string> output = new();
+            Bleh(PartsTreeView.Nodes[0], output);
+
+            StringBuilder sb = new(output.Count);
+            for (int i = 0; i < output.Count; i++)
+                sb.Append($"{output[i]}\n");
+            MessageBox.Show(sb.ToString());
+        }
+
+        private void UseShopStatsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateCraftTrees();
         }
     }
 }

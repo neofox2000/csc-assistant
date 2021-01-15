@@ -170,8 +170,16 @@ namespace CSC_Assistant.Client.Data
             //Iterate through all items in the database
             foreach (var res in resources)
             {
-                var resItem = ItemMap[res.Key];
-                var newNode = parentNode.Nodes.Add($"{res.Value * amount}x {resItem}");
+                double qty = amount * res.Value;
+                //var resItem = ItemMap[res.Key];
+
+                if (shopStats.useStats)
+                {
+                    var yieldCalc = res.Value * shopStats.inputModifier / shopStats.yield;
+                    qty = Math.Ceiling(yieldCalc * amount / (1 + shopStats.outputModifier / 100));
+                }
+
+                var newNode = parentNode.Nodes.Add($"{ItemMap[res.Key]}\t{qty:0.##}");
 
                 //Build sub-nodes if needed
                 var newDepth = depth - 1;

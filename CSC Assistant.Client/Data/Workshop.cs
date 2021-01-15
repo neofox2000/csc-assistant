@@ -11,6 +11,7 @@ namespace CSC_Assistant.Client.Data
     {
         public struct Stats
         {
+            public bool useStats;
             public double yield;
             public double inputModifier;
             public double outputModifier;
