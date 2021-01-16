@@ -41,21 +41,19 @@ namespace CSC_Assistant.Client.Forms
             this.DataGridPanel = new System.Windows.Forms.Panel();
             this.ItemGridPanel = new System.Windows.Forms.Panel();
             this.ItemFilterPanel = new System.Windows.Forms.Panel();
+            this.UseShopStatsGroupBox = new System.Windows.Forms.GroupBox();
+            this.UseShopStatsCheckBox = new System.Windows.Forms.CheckBox();
             this.BaseYieldGroupBox = new System.Windows.Forms.GroupBox();
             this.BaseYeildNUD = new System.Windows.Forms.NumericUpDown();
             this.InputModifierGroupBox = new System.Windows.Forms.GroupBox();
             this.InputModifierNUD = new System.Windows.Forms.NumericUpDown();
             this.YieldModifierGroupBox = new System.Windows.Forms.GroupBox();
             this.YieldModifierNUD = new System.Windows.Forms.NumericUpDown();
-            this.TreeDepthGroupBox = new System.Windows.Forms.GroupBox();
-            this.TreeDepthNUD = new System.Windows.Forms.NumericUpDown();
             this.QuantityGroupBox = new System.Windows.Forms.GroupBox();
             this.QuantityNUD = new System.Windows.Forms.NumericUpDown();
             this.ItemNameFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemNameFilterTextBox = new System.Windows.Forms.TextBox();
             this.MainSplitter = new System.Windows.Forms.Splitter();
-            this.UseShopStatsGroupBox = new System.Windows.Forms.GroupBox();
-            this.UseShopStatsCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             this.TreeViewsPanel.SuspendLayout();
             this.MakesGroupBox.SuspendLayout();
@@ -63,18 +61,16 @@ namespace CSC_Assistant.Client.Forms
             this.DataGridPanel.SuspendLayout();
             this.ItemGridPanel.SuspendLayout();
             this.ItemFilterPanel.SuspendLayout();
+            this.UseShopStatsGroupBox.SuspendLayout();
             this.BaseYieldGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BaseYeildNUD)).BeginInit();
             this.InputModifierGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InputModifierNUD)).BeginInit();
             this.YieldModifierGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.YieldModifierNUD)).BeginInit();
-            this.TreeDepthGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TreeDepthNUD)).BeginInit();
             this.QuantityGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).BeginInit();
             this.ItemNameFilterGroupBox.SuspendLayout();
-            this.UseShopStatsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // PartsTreeView
@@ -182,7 +178,6 @@ namespace CSC_Assistant.Client.Forms
             this.ItemFilterPanel.Controls.Add(this.BaseYieldGroupBox);
             this.ItemFilterPanel.Controls.Add(this.InputModifierGroupBox);
             this.ItemFilterPanel.Controls.Add(this.YieldModifierGroupBox);
-            this.ItemFilterPanel.Controls.Add(this.TreeDepthGroupBox);
             this.ItemFilterPanel.Controls.Add(this.QuantityGroupBox);
             this.ItemFilterPanel.Controls.Add(this.ItemNameFilterGroupBox);
             this.ItemFilterPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -191,11 +186,34 @@ namespace CSC_Assistant.Client.Forms
             this.ItemFilterPanel.Size = new System.Drawing.Size(863, 49);
             this.ItemFilterPanel.TabIndex = 10;
             // 
+            // UseShopStatsGroupBox
+            // 
+            this.UseShopStatsGroupBox.Controls.Add(this.UseShopStatsCheckBox);
+            this.UseShopStatsGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.UseShopStatsGroupBox.Location = new System.Drawing.Point(535, 0);
+            this.UseShopStatsGroupBox.Name = "UseShopStatsGroupBox";
+            this.UseShopStatsGroupBox.Size = new System.Drawing.Size(27, 49);
+            this.UseShopStatsGroupBox.TabIndex = 6;
+            this.UseShopStatsGroupBox.TabStop = false;
+            this.UseShopStatsGroupBox.Text = ">";
+            // 
+            // UseShopStatsCheckBox
+            // 
+            this.UseShopStatsCheckBox.AutoSize = true;
+            this.UseShopStatsCheckBox.Checked = true;
+            this.UseShopStatsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.UseShopStatsCheckBox.Location = new System.Drawing.Point(6, 23);
+            this.UseShopStatsCheckBox.Name = "UseShopStatsCheckBox";
+            this.UseShopStatsCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.UseShopStatsCheckBox.TabIndex = 0;
+            this.UseShopStatsCheckBox.UseVisualStyleBackColor = true;
+            this.UseShopStatsCheckBox.CheckedChanged += new System.EventHandler(this.UseShopStatsCheckBox_CheckedChanged);
+            // 
             // BaseYieldGroupBox
             // 
             this.BaseYieldGroupBox.Controls.Add(this.BaseYeildNUD);
             this.BaseYieldGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BaseYieldGroupBox.Location = new System.Drawing.Point(505, 0);
+            this.BaseYieldGroupBox.Location = new System.Drawing.Point(562, 0);
             this.BaseYieldGroupBox.Name = "BaseYieldGroupBox";
             this.BaseYieldGroupBox.Size = new System.Drawing.Size(74, 49);
             this.BaseYieldGroupBox.TabIndex = 5;
@@ -213,16 +231,16 @@ namespace CSC_Assistant.Client.Forms
             this.BaseYeildNUD.Size = new System.Drawing.Size(62, 23);
             this.BaseYeildNUD.TabIndex = 2;
             this.BaseYeildNUD.Value = new decimal(new int[] {
-            98,
+            9897,
             0,
             0,
-            0});
+            131072});
             // 
             // InputModifierGroupBox
             // 
             this.InputModifierGroupBox.Controls.Add(this.InputModifierNUD);
             this.InputModifierGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.InputModifierGroupBox.Location = new System.Drawing.Point(579, 0);
+            this.InputModifierGroupBox.Location = new System.Drawing.Point(636, 0);
             this.InputModifierGroupBox.Name = "InputModifierGroupBox";
             this.InputModifierGroupBox.Size = new System.Drawing.Size(77, 49);
             this.InputModifierGroupBox.TabIndex = 3;
@@ -254,7 +272,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.YieldModifierGroupBox.Controls.Add(this.YieldModifierNUD);
             this.YieldModifierGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.YieldModifierGroupBox.Location = new System.Drawing.Point(656, 0);
+            this.YieldModifierGroupBox.Location = new System.Drawing.Point(713, 0);
             this.YieldModifierGroupBox.Name = "YieldModifierGroupBox";
             this.YieldModifierGroupBox.Size = new System.Drawing.Size(74, 49);
             this.YieldModifierGroupBox.TabIndex = 4;
@@ -281,43 +299,6 @@ namespace CSC_Assistant.Client.Forms
             0,
             0,
             0});
-            // 
-            // TreeDepthGroupBox
-            // 
-            this.TreeDepthGroupBox.Controls.Add(this.TreeDepthNUD);
-            this.TreeDepthGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.TreeDepthGroupBox.Location = new System.Drawing.Point(730, 0);
-            this.TreeDepthGroupBox.Name = "TreeDepthGroupBox";
-            this.TreeDepthGroupBox.Size = new System.Drawing.Size(57, 49);
-            this.TreeDepthGroupBox.TabIndex = 2;
-            this.TreeDepthGroupBox.TabStop = false;
-            this.TreeDepthGroupBox.Text = "Depth";
-            // 
-            // TreeDepthNUD
-            // 
-            this.TreeDepthNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TreeDepthNUD.Location = new System.Drawing.Point(6, 19);
-            this.TreeDepthNUD.Maximum = new decimal(new int[] {
-            6,
-            0,
-            0,
-            0});
-            this.TreeDepthNUD.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.TreeDepthNUD.Name = "TreeDepthNUD";
-            this.TreeDepthNUD.Size = new System.Drawing.Size(45, 23);
-            this.TreeDepthNUD.TabIndex = 0;
-            this.TreeDepthNUD.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.TreeDepthNUD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.QuantityNUD_KeyUp);
             // 
             // QuantityGroupBox
             // 
@@ -385,27 +366,6 @@ namespace CSC_Assistant.Client.Forms
             this.MainSplitter.TabIndex = 12;
             this.MainSplitter.TabStop = false;
             // 
-            // UseShopStatsGroupBox
-            // 
-            this.UseShopStatsGroupBox.Controls.Add(this.UseShopStatsCheckBox);
-            this.UseShopStatsGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.UseShopStatsGroupBox.Location = new System.Drawing.Point(478, 0);
-            this.UseShopStatsGroupBox.Name = "UseShopStatsGroupBox";
-            this.UseShopStatsGroupBox.Size = new System.Drawing.Size(27, 49);
-            this.UseShopStatsGroupBox.TabIndex = 6;
-            this.UseShopStatsGroupBox.TabStop = false;
-            this.UseShopStatsGroupBox.Text = ">";
-            // 
-            // UseShopStatsCheckBox
-            // 
-            this.UseShopStatsCheckBox.AutoSize = true;
-            this.UseShopStatsCheckBox.Location = new System.Drawing.Point(6, 23);
-            this.UseShopStatsCheckBox.Name = "UseShopStatsCheckBox";
-            this.UseShopStatsCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.UseShopStatsCheckBox.TabIndex = 0;
-            this.UseShopStatsCheckBox.UseVisualStyleBackColor = true;
-            this.UseShopStatsCheckBox.CheckedChanged += new System.EventHandler(this.UseShopStatsCheckBox_CheckedChanged);
-            // 
             // ItemBrowserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -426,20 +386,18 @@ namespace CSC_Assistant.Client.Forms
             this.DataGridPanel.ResumeLayout(false);
             this.ItemGridPanel.ResumeLayout(false);
             this.ItemFilterPanel.ResumeLayout(false);
+            this.UseShopStatsGroupBox.ResumeLayout(false);
+            this.UseShopStatsGroupBox.PerformLayout();
             this.BaseYieldGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BaseYeildNUD)).EndInit();
             this.InputModifierGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.InputModifierNUD)).EndInit();
             this.YieldModifierGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.YieldModifierNUD)).EndInit();
-            this.TreeDepthGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.TreeDepthNUD)).EndInit();
             this.QuantityGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).EndInit();
             this.ItemNameFilterGroupBox.ResumeLayout(false);
             this.ItemNameFilterGroupBox.PerformLayout();
-            this.UseShopStatsGroupBox.ResumeLayout(false);
-            this.UseShopStatsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -461,8 +419,6 @@ namespace CSC_Assistant.Client.Forms
         private System.Windows.Forms.NumericUpDown QuantityNUD;
         private System.Windows.Forms.Splitter MainSplitter;
         private System.Windows.Forms.Splitter CraftTreeSplitter;
-        private System.Windows.Forms.GroupBox TreeDepthGroupBox;
-        private System.Windows.Forms.NumericUpDown TreeDepthNUD;
         private System.Windows.Forms.GroupBox BaseYieldGroupBox;
         private System.Windows.Forms.NumericUpDown BaseYeildNUD;
         private System.Windows.Forms.GroupBox YieldModifierGroupBox;

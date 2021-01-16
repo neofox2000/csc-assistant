@@ -24,7 +24,7 @@ namespace CSC_Assistant.Client.Data
         public static List<Item> Items { get; private set; }
         static FSharpMap<string, Item> ItemMap;
 
-        public static int ResourceTreeDepth { get; set; } = 3;
+        public static int ResourceTreeDepth { get; set; } = 10;
 
         static readonly HttpClient client = new ();
         static string FullDbPath => @$"{Program.outputPath}\{DbFileName}";
@@ -189,7 +189,7 @@ namespace CSC_Assistant.Client.Data
                     newNode, 
                     newDepth,
                     shopStats,
-                    res.Value * amount);
+                    qty);
             }
         }
         private static void BuildMakesTree(Item item, TreeNode parentNode, int depth)

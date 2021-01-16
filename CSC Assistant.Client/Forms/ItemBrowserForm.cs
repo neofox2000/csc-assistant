@@ -107,14 +107,14 @@ namespace CSC_Assistant.Client.Forms
                 return;
             }
 
-            ItemDB.ResourceTreeDepth = (int)TreeDepthNUD.Value;
+            //ItemDB.ResourceTreeDepth = 10;
             var qty = (double)QuantityNUD.Value;
             var shopStats = new Workshop.Stats()
             {
                 useStats = UseShopStatsCheckBox.Checked,
-                yield = (float)(BaseYeildNUD.Value), 
-                inputModifier = (float)(InputModifierNUD.Value), 
-                outputModifier = (float)(YieldModifierNUD.Value)
+                yield = (double)BaseYeildNUD.Value, 
+                inputModifier = (double)InputModifierNUD.Value, 
+                outputModifier = (double)YieldModifierNUD.Value
             };
 
             ComponentUtility.SetTreeViewRootNode(
@@ -125,24 +125,27 @@ namespace CSC_Assistant.Client.Forms
                 ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes, shopStats, qty));
         }
 
-        private void Bleh(TreeNode node, List<string> output)
+        private void Bleh(TreeNode node, List<string> output, int depth)
         {
-            output.Add(node.Text);
+            output.Add($"{new string('#', depth)} {node.Text}");
             if (node.Nodes.Count > 0)
                 for (int i = 0; i < node.Nodes.Count; i++)
-                    Bleh(node.Nodes[i], output);
+                    Bleh(node.Nodes[i], output, depth + 1);
         }
 
         private void PartsTreeView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //Copy csv data to clipboard
             List<string> output = new();
-            Bleh(PartsTreeView.Nodes[0], output);
+            Bleh(PartsTreeView.Nodes[0], output, 0);
 
             StringBuilder sb = new(output.Count);
             for (int i = 0; i < output.Count; i++)
                 sb.Append($"{output[i]}\n");
-            MessageBox.Show(sb.ToString());
+
+            var outputString = sb.ToString();
+            Clipboard.SetText(outputString);
+            MessageBox.Show($"The following was copied to clipboard:\n\n{outputString}");
         }
 
         private void UseShopStatsCheckBox_CheckedChanged(object sender, EventArgs e)

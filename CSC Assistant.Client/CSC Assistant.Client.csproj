@@ -8,6 +8,7 @@
     <Authors>Paul Miller</Authors>
     <Description>A suite of tools for making life in CSC easier</Description>
     <StartupObject>CSC_Assistant.Client.Program</StartupObject>
+    <Version>1.2.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
