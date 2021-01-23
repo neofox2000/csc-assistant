@@ -23,6 +23,7 @@ namespace CSC_Assistant.Client.Data
 
         public static List<Item> Items { get; private set; }
         static FSharpMap<string, Item> ItemMap;
+        static List<string> NonStatItems = new List<string>(2) { "ship", "module" };
 
         public static int ResourceTreeDepth { get; set; } = 10;
 
@@ -131,6 +132,7 @@ namespace CSC_Assistant.Client.Data
             if ((itemFilter == null) || (itemFilter == string.Empty))
             {
                 itemList = Items
+                    .Where(x => x.Blob.ImplementationState != "non-functional")
                     .Select(x => x.Blob).ToList();
             }
             else
@@ -140,6 +142,7 @@ namespace CSC_Assistant.Client.Data
                     System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 
                 itemList = Items
+                    .Where(x => x.Blob.ImplementationState != "non-functional")
                     .Where(x => x.Name != null && myRegex.IsMatch(x.Name))
                     .Select(x => x.Blob).ToList().ToList();
             }
@@ -173,7 +176,7 @@ namespace CSC_Assistant.Client.Data
                 double qty = amount * res.Value;
                 //var resItem = ItemMap[res.Key];
 
-                if (shopStats.useStats)
+                if (shopStats.useStats && !NonStatItems.Contains(item.Blob.Type))
                 {
                     var yieldCalc = res.Value * shopStats.inputModifier / shopStats.yield;
                     qty = Math.Ceiling(yieldCalc * amount / (1 + shopStats.outputModifier / 100));
