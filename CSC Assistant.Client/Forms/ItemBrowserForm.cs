@@ -86,12 +86,6 @@ namespace CSC_Assistant.Client.Forms
             if (e.KeyCode == Keys.Enter)
                 UpdateGrid(ItemNameFilterTextBox.Text);
         }
-
-        private void QuantityNUD_KeyUp(object sender, KeyEventArgs e)
-        {
-            UpdateCraftTrees(
-                GetRowItem(ItemsGridView.SelectedCells[0].RowIndex));
-        }
         
         private void UpdateCraftTrees(Item item = null)
         {
@@ -125,19 +119,19 @@ namespace CSC_Assistant.Client.Forms
                 ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes, shopStats, qty));
         }
 
-        private void Bleh(TreeNode node, List<string> output, int depth)
+        private void TreeNodeToText(TreeNode node, List<string> output, int depth)
         {
             output.Add($"{new string('#', depth)} {node.Text}");
             if (node.Nodes.Count > 0)
                 for (int i = 0; i < node.Nodes.Count; i++)
-                    Bleh(node.Nodes[i], output, depth + 1);
+                    TreeNodeToText(node.Nodes[i], output, depth + 1);
         }
 
         private void PartsTreeView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //Copy csv data to clipboard
             List<string> output = new();
-            Bleh(PartsTreeView.Nodes[0], output, 0);
+            TreeNodeToText(PartsTreeView.Nodes[0], output, 0);
 
             StringBuilder sb = new(output.Count);
             for (int i = 0; i < output.Count; i++)
@@ -151,6 +145,12 @@ namespace CSC_Assistant.Client.Forms
         private void UseShopStatsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             UpdateCraftTrees();
+        }
+
+        private void QuantityNUD_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateCraftTrees(
+                GetRowItem(ItemsGridView.SelectedCells[0].RowIndex));
         }
     }
 }

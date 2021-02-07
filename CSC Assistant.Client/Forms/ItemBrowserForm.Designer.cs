@@ -335,7 +335,7 @@ namespace CSC_Assistant.Client.Forms
             0,
             0,
             0});
-            this.QuantityNUD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.QuantityNUD_KeyUp);
+            this.QuantityNUD.ValueChanged += new System.EventHandler(this.QuantityNUD_ValueChanged);
             // 
             // ItemNameFilterGroupBox
             // 

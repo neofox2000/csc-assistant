@@ -163,20 +163,27 @@ namespace CSC_Assistant.Client.Data
 
             return rootItem;
         }
-        private static void BuildPartsTree(Item item, TreeNode parentNode, int depth, Workshop.Stats shopStats, double amount)
+        private static int BuildPartsTree(Item item, TreeNode parentNode, int depth, Workshop.Stats shopStats, double amount)
         {
-            var resources = Algorithms.ItemParts(ItemMap, item.Id).Item2;
+            var start = DateTime.Now;
+            int msTaken = 0;
+
+            //Fetch item parts and cache on item
+            if (item.PartsList == null)
+                item.PartsList = Algorithms.ItemParts(ItemMap, item.Id).Item2;
+
+            bool useStatsInCalc = shopStats.useStats && !NonStatItems.Contains(item.Blob.Type);
 
             //Bail if nothing to do
-            if (resources.IsEmpty) return;
+            if (item.PartsList.IsEmpty) return msTaken;
 
             //Iterate through all items in the database
-            foreach (var res in resources)
+            foreach (var res in item.PartsList)
             {
                 double qty = amount * res.Value;
                 //var resItem = ItemMap[res.Key];
 
-                if (shopStats.useStats && !NonStatItems.Contains(item.Blob.Type))
+                if (useStatsInCalc)
                 {
                     var yieldCalc = res.Value * shopStats.inputModifier / shopStats.yield;
                     qty = Math.Ceiling(yieldCalc * amount / (1 + shopStats.outputModifier / 100));
@@ -187,24 +194,31 @@ namespace CSC_Assistant.Client.Data
                 //Build sub-nodes if needed
                 var newDepth = depth - 1;
                 
-                if (newDepth > 0) BuildPartsTree(
+                if (newDepth > 0) msTaken += BuildPartsTree(
                     LookupItemID(res.Key), 
                     newNode, 
                     newDepth,
                     shopStats,
                     qty);
             }
+
+            TimeSpan timeTaken = DateTime.Now - start;
+            msTaken = timeTaken.Milliseconds;
+            return msTaken;
         }
         private static void BuildMakesTree(Item item, TreeNode parentNode, int depth)
         {
             //Iterate through each item in the database
             foreach (var itemCandidate in ItemMap)
             {
-                var resources = Algorithms.ItemParts(ItemMap, itemCandidate.Key).Item2;
-                if (resources.IsEmpty) continue;
+                //Use cache if available - otherwise build a new cache
+                if (itemCandidate.Value.PartsList == null)
+                    itemCandidate.Value.PartsList = Algorithms.ItemParts(ItemMap, itemCandidate.Key).Item2;
+
+                if (itemCandidate.Value.PartsList.IsEmpty) continue;
 
                 //Iterate through each component to see if it is made of item
-                foreach(var res in resources)
+                foreach(var res in itemCandidate.Value.PartsList)
                 {
                     if(res.Key == item.Id)
                     {

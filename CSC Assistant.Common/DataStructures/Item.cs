@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Microsoft.FSharp.Collections;
 
 namespace CSC_Assistant.Common.DataStructures
 {
@@ -15,6 +16,9 @@ namespace CSC_Assistant.Common.DataStructures
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        //Cached parts list
+        public FSharpMap<string, double> PartsList { get; set; }
 
         public override string ToString() => // XD
             $"{Name} {(Blob.TechLevel != null ? $"T{Blob.TechLevel}" : "" )}";
