@@ -5,5 +5,3 @@ Currently Implemented:
 - Log Viewer
 - EZ Alt Starter
 - Item Browser
-- Item Used-By Viewer (Double-click item in browser)
-- Coming Soon (Crafting helper)
