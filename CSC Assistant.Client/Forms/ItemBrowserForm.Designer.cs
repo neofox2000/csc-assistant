@@ -54,6 +54,8 @@ namespace CSC_Assistant.Client.Forms
             this.ItemNameFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemNameFilterTextBox = new System.Windows.Forms.TextBox();
             this.MainSplitter = new System.Windows.Forms.Splitter();
+            this.ClipboardCopyDepthGB = new System.Windows.Forms.GroupBox();
+            this.ClipboardCopyDepthNUD = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             this.TreeViewsPanel.SuspendLayout();
             this.MakesGroupBox.SuspendLayout();
@@ -71,6 +73,8 @@ namespace CSC_Assistant.Client.Forms
             this.QuantityGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).BeginInit();
             this.ItemNameFilterGroupBox.SuspendLayout();
+            this.ClipboardCopyDepthGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ClipboardCopyDepthNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // PartsTreeView
@@ -180,6 +184,7 @@ namespace CSC_Assistant.Client.Forms
             this.ItemFilterPanel.Controls.Add(this.YieldModifierGroupBox);
             this.ItemFilterPanel.Controls.Add(this.QuantityGroupBox);
             this.ItemFilterPanel.Controls.Add(this.ItemNameFilterGroupBox);
+            this.ItemFilterPanel.Controls.Add(this.ClipboardCopyDepthGB);
             this.ItemFilterPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ItemFilterPanel.Location = new System.Drawing.Point(0, 0);
             this.ItemFilterPanel.Name = "ItemFilterPanel";
@@ -190,7 +195,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.UseShopStatsGroupBox.Controls.Add(this.UseShopStatsCheckBox);
             this.UseShopStatsGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.UseShopStatsGroupBox.Location = new System.Drawing.Point(535, 0);
+            this.UseShopStatsGroupBox.Location = new System.Drawing.Point(447, 0);
             this.UseShopStatsGroupBox.Name = "UseShopStatsGroupBox";
             this.UseShopStatsGroupBox.Size = new System.Drawing.Size(27, 49);
             this.UseShopStatsGroupBox.TabIndex = 6;
@@ -213,7 +218,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.BaseYieldGroupBox.Controls.Add(this.BaseYeildNUD);
             this.BaseYieldGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BaseYieldGroupBox.Location = new System.Drawing.Point(562, 0);
+            this.BaseYieldGroupBox.Location = new System.Drawing.Point(474, 0);
             this.BaseYieldGroupBox.Name = "BaseYieldGroupBox";
             this.BaseYieldGroupBox.Size = new System.Drawing.Size(74, 49);
             this.BaseYieldGroupBox.TabIndex = 5;
@@ -240,7 +245,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.InputModifierGroupBox.Controls.Add(this.InputModifierNUD);
             this.InputModifierGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.InputModifierGroupBox.Location = new System.Drawing.Point(636, 0);
+            this.InputModifierGroupBox.Location = new System.Drawing.Point(548, 0);
             this.InputModifierGroupBox.Name = "InputModifierGroupBox";
             this.InputModifierGroupBox.Size = new System.Drawing.Size(77, 49);
             this.InputModifierGroupBox.TabIndex = 3;
@@ -272,7 +277,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.YieldModifierGroupBox.Controls.Add(this.YieldModifierNUD);
             this.YieldModifierGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.YieldModifierGroupBox.Location = new System.Drawing.Point(713, 0);
+            this.YieldModifierGroupBox.Location = new System.Drawing.Point(625, 0);
             this.YieldModifierGroupBox.Name = "YieldModifierGroupBox";
             this.YieldModifierGroupBox.Size = new System.Drawing.Size(74, 49);
             this.YieldModifierGroupBox.TabIndex = 4;
@@ -304,7 +309,7 @@ namespace CSC_Assistant.Client.Forms
             // 
             this.QuantityGroupBox.Controls.Add(this.QuantityNUD);
             this.QuantityGroupBox.Dock = System.Windows.Forms.DockStyle.Right;
-            this.QuantityGroupBox.Location = new System.Drawing.Point(787, 0);
+            this.QuantityGroupBox.Location = new System.Drawing.Point(699, 0);
             this.QuantityGroupBox.Name = "QuantityGroupBox";
             this.QuantityGroupBox.Size = new System.Drawing.Size(76, 49);
             this.QuantityGroupBox.TabIndex = 1;
@@ -366,6 +371,42 @@ namespace CSC_Assistant.Client.Forms
             this.MainSplitter.TabIndex = 12;
             this.MainSplitter.TabStop = false;
             // 
+            // ClipboardCopyDepthGB
+            // 
+            this.ClipboardCopyDepthGB.Controls.Add(this.ClipboardCopyDepthNUD);
+            this.ClipboardCopyDepthGB.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ClipboardCopyDepthGB.Location = new System.Drawing.Point(775, 0);
+            this.ClipboardCopyDepthGB.Name = "ClipboardCopyDepthGB";
+            this.ClipboardCopyDepthGB.Size = new System.Drawing.Size(88, 49);
+            this.ClipboardCopyDepthGB.TabIndex = 7;
+            this.ClipboardCopyDepthGB.TabStop = false;
+            this.ClipboardCopyDepthGB.Text = "Copy Depth";
+            // 
+            // ClipboardCopyDepthNUD
+            // 
+            this.ClipboardCopyDepthNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClipboardCopyDepthNUD.Location = new System.Drawing.Point(6, 19);
+            this.ClipboardCopyDepthNUD.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.ClipboardCopyDepthNUD.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ClipboardCopyDepthNUD.Name = "ClipboardCopyDepthNUD";
+            this.ClipboardCopyDepthNUD.Size = new System.Drawing.Size(76, 23);
+            this.ClipboardCopyDepthNUD.TabIndex = 1;
+            this.ClipboardCopyDepthNUD.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // ItemBrowserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -398,6 +439,8 @@ namespace CSC_Assistant.Client.Forms
             ((System.ComponentModel.ISupportInitialize)(this.QuantityNUD)).EndInit();
             this.ItemNameFilterGroupBox.ResumeLayout(false);
             this.ItemNameFilterGroupBox.PerformLayout();
+            this.ClipboardCopyDepthGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ClipboardCopyDepthNUD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -427,5 +470,7 @@ namespace CSC_Assistant.Client.Forms
         private System.Windows.Forms.NumericUpDown InputModifierNUD;
         private System.Windows.Forms.GroupBox UseShopStatsGroupBox;
         private System.Windows.Forms.CheckBox UseShopStatsCheckBox;
+        private System.Windows.Forms.GroupBox ClipboardCopyDepthGB;
+        private System.Windows.Forms.NumericUpDown ClipboardCopyDepthNUD;
     }
 }

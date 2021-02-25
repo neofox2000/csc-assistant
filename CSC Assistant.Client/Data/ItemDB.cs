@@ -18,12 +18,13 @@ namespace CSC_Assistant.Client.Data
         const string baseApiUri = @"https://crosscuttingconcern.builtwithdark.com/";
         const string itemsUri = @"items";
         const string DbFileName = "items.json";
+        const string subCompType = "subcomponent";
 
         public enum ResourceTreeType { Parts, Makes }
 
         public static List<Item> Items { get; private set; }
         static FSharpMap<string, Item> ItemMap;
-        static List<string> NonStatItems = new List<string>(2) { "ship", "module" };
+        static readonly List<string> NonStatItems = new(2) { "ship", "module" };
 
         public static int ResourceTreeDepth { get; set; } = 10;
 
@@ -153,7 +154,7 @@ namespace CSC_Assistant.Client.Data
         public static TreeNode GetItemResourceTree(Item item, ResourceTreeType treeType, Workshop.Stats shopStats, double amount)
         {
             //Root just gets a name
-            TreeNode rootItem = new(item.ToString());
+            TreeNode rootItem = new($"{item}\t{amount:0.##}");
 
             //Child nodes get name + quantity
             if (treeType == ResourceTreeType.Parts)
@@ -208,6 +209,12 @@ namespace CSC_Assistant.Client.Data
         }
         private static void BuildMakesTree(Item item, TreeNode parentNode, int depth)
         {
+            if (item.Blob.Type == subCompType)
+            {
+                parentNode.Nodes.Add("[Ships]");
+                return;
+            }
+
             //Iterate through each item in the database
             foreach (var itemCandidate in ItemMap)
             {

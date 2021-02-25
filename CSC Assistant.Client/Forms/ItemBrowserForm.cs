@@ -119,19 +119,21 @@ namespace CSC_Assistant.Client.Forms
                 ItemDB.GetItemResourceTree(item, ItemDB.ResourceTreeType.Makes, shopStats, qty));
         }
 
-        private void TreeNodeToText(TreeNode node, List<string> output, int depth)
+        private void TreeNodeToText(TreeNode node, List<string> output, int currentDepth, int maxDepth)
         {
-            output.Add($"{new string('#', depth)} {node.Text}");
+            if (currentDepth > maxDepth) return;
+
+            output.Add($"{new string('-', Math.Max(0, currentDepth - 1))} {node.Text}");
             if (node.Nodes.Count > 0)
                 for (int i = 0; i < node.Nodes.Count; i++)
-                    TreeNodeToText(node.Nodes[i], output, depth + 1);
+                    TreeNodeToText(node.Nodes[i], output, currentDepth + 1, maxDepth);
         }
 
         private void PartsTreeView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //Copy csv data to clipboard
             List<string> output = new();
-            TreeNodeToText(PartsTreeView.Nodes[0], output, 0);
+            TreeNodeToText(PartsTreeView.Nodes[0], output, 0, (int)ClipboardCopyDepthNUD.Value);
 
             StringBuilder sb = new(output.Count);
             for (int i = 0; i < output.Count; i++)
