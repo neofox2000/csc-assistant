@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using CSC_Assistant.Client.Data;
 using CSC_Assistant.Client.Utils;
 using CSC_Assistant.Common.DataStructures;
+using CSC_Assistant.Client.Properties;
 
 namespace CSC_Assistant.Client.Forms
 {
@@ -19,7 +20,23 @@ namespace CSC_Assistant.Client.Forms
 
         private void ItemBrowserForm_Shown(object sender, EventArgs e)
         {
+            LoadSettings();
             RefreshItems();
+        }
+
+        private void LoadSettings()
+        {
+            BaseYeildNUD.Value = Settings.Default.BaseYield;
+            InputModifierNUD.Value = Settings.Default.AugInput;
+            YieldModifierNUD.Value = Settings.Default.AugYield;
+        }
+
+        private void SaveSettings()
+        {
+            Settings.Default.BaseYield = BaseYeildNUD.Value;
+            Settings.Default.AugInput = InputModifierNUD.Value;
+            Settings.Default.AugYield = YieldModifierNUD.Value;
+            Settings.Default.Save();
         }
 
         private void RefreshItems()

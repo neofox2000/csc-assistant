@@ -14,6 +14,8 @@ namespace CSC_Assistant.Client.Forms
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            SaveSettings();
+
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -53,9 +55,9 @@ namespace CSC_Assistant.Client.Forms
             this.QuantityNUD = new System.Windows.Forms.NumericUpDown();
             this.ItemNameFilterGroupBox = new System.Windows.Forms.GroupBox();
             this.ItemNameFilterTextBox = new System.Windows.Forms.TextBox();
-            this.MainSplitter = new System.Windows.Forms.Splitter();
             this.ClipboardCopyDepthGB = new System.Windows.Forms.GroupBox();
             this.ClipboardCopyDepthNUD = new System.Windows.Forms.NumericUpDown();
+            this.MainSplitter = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsGridView)).BeginInit();
             this.TreeViewsPanel.SuspendLayout();
             this.MakesGroupBox.SuspendLayout();
@@ -236,10 +238,10 @@ namespace CSC_Assistant.Client.Forms
             this.BaseYeildNUD.Size = new System.Drawing.Size(62, 23);
             this.BaseYeildNUD.TabIndex = 2;
             this.BaseYeildNUD.Value = new decimal(new int[] {
-            9897,
+            98,
             0,
             0,
-            131072});
+            0});
             // 
             // InputModifierGroupBox
             // 
@@ -268,10 +270,10 @@ namespace CSC_Assistant.Client.Forms
             this.InputModifierNUD.Size = new System.Drawing.Size(62, 23);
             this.InputModifierNUD.TabIndex = 1;
             this.InputModifierNUD.Value = new decimal(new int[] {
-            75,
+            705,
             0,
             0,
-            0});
+            65536});
             // 
             // YieldModifierGroupBox
             // 
@@ -300,10 +302,10 @@ namespace CSC_Assistant.Client.Forms
             this.YieldModifierNUD.Size = new System.Drawing.Size(62, 23);
             this.YieldModifierNUD.TabIndex = 2;
             this.YieldModifierNUD.Value = new decimal(new int[] {
-            15,
+            1825,
             0,
             0,
-            0});
+            131072});
             // 
             // QuantityGroupBox
             // 
@@ -362,15 +364,6 @@ namespace CSC_Assistant.Client.Forms
             this.ItemNameFilterTextBox.TabIndex = 0;
             this.ItemNameFilterTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ItemNameFilterTextBox_KeyUp);
             // 
-            // MainSplitter
-            // 
-            this.MainSplitter.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MainSplitter.Location = new System.Drawing.Point(858, 0);
-            this.MainSplitter.Name = "MainSplitter";
-            this.MainSplitter.Size = new System.Drawing.Size(5, 513);
-            this.MainSplitter.TabIndex = 12;
-            this.MainSplitter.TabStop = false;
-            // 
             // ClipboardCopyDepthGB
             // 
             this.ClipboardCopyDepthGB.Controls.Add(this.ClipboardCopyDepthNUD);
@@ -406,6 +399,15 @@ namespace CSC_Assistant.Client.Forms
             0,
             0,
             0});
+            // 
+            // MainSplitter
+            // 
+            this.MainSplitter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MainSplitter.Location = new System.Drawing.Point(858, 0);
+            this.MainSplitter.Name = "MainSplitter";
+            this.MainSplitter.Size = new System.Drawing.Size(5, 513);
+            this.MainSplitter.TabIndex = 12;
+            this.MainSplitter.TabStop = false;
             // 
             // ItemBrowserForm
             // 
